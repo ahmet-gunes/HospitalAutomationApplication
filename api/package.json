@@ -1,5 +1,40 @@
 {
+  "name": "mobilprog",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "type": "module",
   "dependencies": {
-    "mysql2": "^2.3.3"
-  }
+    "denque": "^2.1.0",
+    "dotenv": "^16.0.3",
+    "generate-function": "^2.3.1",
+    "iconv-lite": "^0.6.3",
+    "is-property": "^1.0.2",
+    "long": "^4.0.0",
+    "lru-cache": "^6.0.0",
+    "mysql2": "^2.3.3",
+    "named-placeholders": "^1.1.2",
+    "pseudomap": "^1.0.2",
+    "safer-buffer": "^2.1.2",
+    "seq-queue": "^0.0.5",
+    "sqlstring": "^2.3.3",
+    "yallist": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MetehanKarabulut/MobilProg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MetehanKarabulut/MobilProg/issues"
+  },
+  "homepage": "https://github.com/MetehanKarabulut/MobilProg#readme"
 }
