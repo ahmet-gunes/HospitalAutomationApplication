@@ -13,12 +13,17 @@ const pool = mysql.createPool({
 
 async function getDoctors(){
     const [rows] = await pool.query("SELECT * FROM doctor")
-    return rows
+    return rows[0]
 }
 
 async function getDoctor(email, pass){
     const [rows] = await pool.query("SELECT * FROM doctor WHERE doctorMail = ? AND doctorPassword = ?", [email, pass])
-    return rows
+    return rows[0]
+}
+
+async function setDoctor(id, name, mail, pass, photo, gender, disc, mastery , graduate, workplace){
+    const[result] = await pool.query('INSERT INTO doctor(doctorID, doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender,doctorDiscipline, doctorMastery1, doctorGraduate, doctorWorkplace ) VALUES (?,?,?,?,?,?,?,?,?,?)',[id, name, mail, pass, photo, gender, disc, mastery , graduate, workplace]);
+    return result.insertId
 }
 
 const item = await getDoctors()
