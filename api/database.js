@@ -36,3 +36,8 @@ export async function setDoctor(name, mail, pass, photo, gender, disc, mastery1,
     return rows
 }
 
+export async function setPatient(name, mail, pass, photo, gender, online) {
+    const [rows] = await pool.query("INSERT INTO patient(PatientName, PatientMail, PatientPassword, PatientPhoto, PatientGender, PatientOnline)VALUES (?,?,?,?,?,?)" ,[name, mail, pass, photo, gender, online])
+    return rows
+}
+
