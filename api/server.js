@@ -1,5 +1,5 @@
 import express from 'express'
-import { getDoctor, getDoctors, getPatient, getPatients, setDoctor} from './database.js'
+import { getDoctor, getDoctors, getPatient, getPatients, setDoctor, setPatient} from './database.js'
 
 const app = express()
 app.use(express.json())
