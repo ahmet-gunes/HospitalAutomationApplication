@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 
 async function getDoctors(){
     const [rows] = await pool.query("SELECT * FROM doctor")
-    return rows[0]
+    return "muz"
 }
 
 async function getDoctor(email, pass){
@@ -21,13 +21,16 @@ async function getDoctor(email, pass){
     return rows[0]
 }
 
-async function setDoctor(id, name, mail, pass, photo, gender, disc, mastery , graduate, workplace){
-    const[result] = await pool.query('INSERT INTO doctor(doctorID, doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender,doctorDiscipline, doctorMastery1, doctorGraduate, doctorWorkplace ) VALUES (?,?,?,?,?,?,?,?,?,?)',[id, name, mail, pass, photo, gender, disc, mastery , graduate, workplace]);
-    return result.insertId
+async function setDoctor(name, mail, pass, photo, gender, disc, mastery1, mastery2, mastery3, graduate, workplace, online) {
+    const [rows] = await pool.query("INSERT INTO doctor(doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorGraduate, doctorWorkplace, doctorOnline )VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ,[name, mail, pass, photo, gender, disc, mastery1, mastery2, mastery3, graduate, workplace, online])
+    return rows
 }
 
+//const kayit = await setDoctor('ahmet', 'ahmet@gmail.com', 5553, null, 'erkek', 'dermatoloji', 'cilt kanseri', null, null, 'karadeniz teknik universitesi', 'cayeli devlet hastanes', 0)
 const item = await getDoctors()
-const doctor = await getDoctor("metehan@gmail.com", "1234")
+//const doctor = await getDoctor("ahmet@hotmail.com", "5553")
 
 
-console.log(doctor)
+//console.log(kayit)
+console.log(item)
+
