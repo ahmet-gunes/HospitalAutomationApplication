@@ -23,6 +23,18 @@ app.get("/patients",async (req, res)=>{
     res.send(patients)
 })
 
+app.get("/patient", async (req, res)=>{
+    const {PatientMail, PatientPassword} = req.body
+    const patient = await getPatient(PatientMail, PatientPassword)
+    res.send(patient)
+})
+
+app.get("/doctor", async (req, res)=>{
+    const {doctorMail, doctorPassword} = req.body
+    const doctor = await getDoctor(doctorMail, doctorPassword)
+    res.send(doctor)
+})
+
 app.post("/doctor", async(req, res) =>{
     const {doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorMastery2, 
         doctorMastery3, doctorGraduate, doctorWorkplace, doctorOnline} = req.body;
