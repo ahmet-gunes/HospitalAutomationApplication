@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 11 Oca 2023, 12:17:24
+-- Üretim Zamanı: 11 Oca 2023, 12:25:16
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `messageSender` int(10) NOT NULL,
   `messageText` varchar(500) COLLATE utf16_turkish_ci DEFAULT NULL,
   `messageMedia` mediumblob,
-  `messageDate` datetime NOT NULL
+  `messageDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
 
 -- --------------------------------------------------------
