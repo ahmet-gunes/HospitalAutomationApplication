@@ -1,5 +1,5 @@
 import express from 'express'
-import { getDoctor, getDoctors, getPatient, getPatients, setDoctor, setPatient} from './database.js'
+import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -21,6 +21,12 @@ app.get("/doctors",async (req, res)=>{
 app.get("/patients",async (req, res)=>{
     const patients = await getPatients()
     res.send(patients)
+})
+
+app.get("/messages", async (req, res)=>{
+    const {messageSender, messageReciever} = req.body
+    const messages = await getMessages(messageSender, messageReciever)
+    res.send(messages)
 })
 
 app.get("/patient", async (req, res)=>{
@@ -49,10 +55,17 @@ app.post("/patient", async(req, res) =>{
         res.send(patient)
 })
 
+<<<<<<< HEAD
 app.post("/logdoc", async(req, res) =>{
     const { doctorMail, doctorPassword} = req.body;
     const doctor = await getDoctor( doctorMail, doctorPassword);
         res.send(doctor)
+=======
+app.post("/message", async(req, res) =>{
+    const {messageSender, messageReciever, messageText, messageMedia} = req.body;
+    const message = await setMessage(messageSender, messageReciever, messageText, messageMedia);
+        res.send(message)
+>>>>>>> 43aad15935002d7162f9475f61d0280bae7e6f56
 })
 
 

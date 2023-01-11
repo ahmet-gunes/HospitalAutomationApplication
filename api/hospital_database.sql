@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 07 Oca 2023, 18:37:24
+-- Üretim Zamanı: 11 Oca 2023, 12:25:16
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `mobiluygulama`
+-- Veritabanı: `hospital_database`
 --
 
 -- --------------------------------------------------------
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
   `doctorWorkplace` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorOnline` tinyint(1) NOT NULL,
   PRIMARY KEY (`doctorID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
 
 -- --------------------------------------------------------
 
@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
-  `messageTo` int(10) NOT NULL,
-  `messageFrom` int(10) NOT NULL,
+  `messageReciever` int(10) NOT NULL,
+  `messageSender` int(10) NOT NULL,
   `messageText` varchar(500) COLLATE utf16_turkish_ci DEFAULT NULL,
   `messageMedia` mediumblob,
-  `messageDate` datetime NOT NULL
+  `messageDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
 
 -- --------------------------------------------------------
