@@ -29,13 +29,13 @@ app.get("/messages", async (req, res)=>{
     res.send(messages)
 })
 
-app.get("/patient", async (req, res)=>{
+app.post("/logpat", async (req, res)=>{
     const {PatientMail, PatientPassword} = req.body
     const patient = await getPatient(PatientMail, PatientPassword)
     res.send(patient)
 })
 
-app.get("/doctor", async (req, res)=>{
+app.post("/logdoc", async (req, res)=>{
     const {doctorMail, doctorPassword} = req.body
     const doctor = await getDoctor(doctorMail, doctorPassword)
     res.send(doctor)
@@ -59,7 +59,5 @@ app.post("/message", async(req, res) =>{
     const {messageSender, messageReciever, messageText, messageMedia} = req.body;
     const message = await setMessage(messageSender, messageReciever, messageText, messageMedia);
         res.send(message)
+
 })
-
-
-
