@@ -55,10 +55,17 @@ app.post("/patient", async(req, res) =>{
         res.send(patient)
 })
 
+<<<<<<< HEAD
+app.post("/logdoc", async(req, res) =>{
+    const { doctorMail, doctorPassword} = req.body;
+    const doctor = await getDoctor( doctorMail, doctorPassword);
+        res.send(doctor)
+=======
 app.post("/message", async(req, res) =>{
     const {messageSender, messageReciever, messageText, messageMedia} = req.body;
     const message = await setMessage(messageSender, messageReciever, messageText, messageMedia);
         res.send(message)
+>>>>>>> 43aad15935002d7162f9475f61d0280bae7e6f56
 })
 
 
