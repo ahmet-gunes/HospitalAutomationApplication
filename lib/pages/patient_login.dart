@@ -1,11 +1,8 @@
-import 'package:doktorhasta/pages/patient_main_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:doktorhasta/config/color_constants.dart';
+import 'package:doktorhasta/pages/patient_register.dart';
 
 class PatientLogin extends StatefulWidget {
-  const PatientLogin({super.key});
+  const PatientLogin({Key? key}) : super(key: key);
 
   @override
   State<PatientLogin> createState() => _PatientLoginState();
@@ -13,91 +10,127 @@ class PatientLogin extends StatefulWidget {
 
 class _PatientLoginState extends State<PatientLogin> {
   final _formKey = GlobalKey<FormState>();
+  var rememberValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.only(top: 50),
-              child: Image.asset(
-                'assets/images/login.png',
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(top: 50),
+                child: Image.asset(
+                  'assets/images/login.png',
+                ),
+                alignment: Alignment.center,
               ),
-              alignment: Alignment.center,
             ),
-          ),
-          Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    width: 300,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'E-mail Giriniz';
+                          }
+                          return null;
+                        },
+                        maxLines: 1,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            hintText: 'E-mail',
+                            prefixIcon: const Icon(Icons.email),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color.fromARGB(255, 78, 87, 100),
+                            ))),
                       ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email';
+                        if (value == null || value.isEmpty) {
+                          return 'Şifre Giriniz';
                         }
                         return null;
                       },
+                      maxLines: 1,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock),
+                          hintText: 'Şifre',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                            color: Color.fromARGB(255, 78, 87, 100),
+                          ))),
                     ),
                   ),
-                ),
-                SizedBox(height: 16.0),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {}
                     },
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PatientMainPage()));
-                        /* if (_formKey.currentState!.validate()) {
-                          // Process the data.
-                        } */
-                      },
-                      child: Text(
-                        'Login',
-                        style: TextStyle(color: ColorConstants.mavi2),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                      backgroundColor: const Color.fromARGB(255, 78, 87, 100),
+                    ),
+                    child: const Text(
+                      'Giriş Yap',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Process the data.
-                        }
-                      },
-                      child: Text('Sign up',
-                          style: TextStyle(color: ColorConstants.mavi2)),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const RegisterPage(title: 'Register UI'),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Hasta Hesabı Oluştur',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 78, 87, 100),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

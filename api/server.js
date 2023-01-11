@@ -49,5 +49,11 @@ app.post("/patient", async(req, res) =>{
         res.send(patient)
 })
 
+app.post("/logdoc", async(req, res) =>{
+    const { doctorMail, doctorPassword} = req.body;
+    const doctor = await getDoctor( doctorMail, doctorPassword);
+        res.send(doctor)
+})
+
 
 

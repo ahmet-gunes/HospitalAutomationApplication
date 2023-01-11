@@ -41,3 +41,5 @@ export async function setPatient(name, mail, pass, photo, gender, online) {
     return rows
 }
 
+
+
