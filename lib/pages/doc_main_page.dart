@@ -1,9 +1,6 @@
-import 'dart:js_util';
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DoctorMainPage extends StatefulWidget {
   const DoctorMainPage({Key? key, required this.doc}) : super(key: key);
