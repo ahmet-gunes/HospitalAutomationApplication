@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
 
 class PatientMainPage extends StatefulWidget {
-  const PatientMainPage({super.key});
+  const PatientMainPage({Key? key, required this.pat}) : super(key: key);
+  final patientDataModel pat;
 
   @override
-  State<PatientMainPage> createState() => _PatientMainPageState();
+  // ignore: no_logic_in_create_state
+  State<PatientMainPage> createState() => _PatientMainPageState(pat: pat);
 }
 
 class _PatientMainPageState extends State<PatientMainPage> {
+  _PatientMainPageState({required this.pat});
+  final patientDataModel pat;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.mavi2,
         automaticallyImplyLeading: false,
-        title: Center(
+        title: const Center(
             child: Text(
-          'HASTA ADI',
+          'HASTA',
           style: TextStyle(color: ColorConstants.mavi4),
         )),
       ),
@@ -33,7 +36,7 @@ class _PatientMainPageState extends State<PatientMainPage> {
             width: 150,
             height: 150,
             color: Colors.black,
-            child: Center(
+            child: const Center(
               child: Text(
                 'FOTO',
                 style: TextStyle(color: Colors.white),
@@ -43,8 +46,8 @@ class _PatientMainPageState extends State<PatientMainPage> {
           Container(
             height: 20,
           ),
-          ltOlustur('Hastanın Adı', ''),
-          ltOlustur('Cinsiyet', ''),
+          ltOlustur('Hastanın Adı', pat.PatientName),
+          ltOlustur('Cinsiyet', pat.PatientGender),
         ],
       ),
       floatingActionButton: FloatingActionButton(

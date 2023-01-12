@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/pages/patient_register.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 
-class PatientLogin extends StatefulWidget {
+class PatientLogin extends ConsumerStatefulWidget {
   const PatientLogin({Key? key}) : super(key: key);
 
   @override
-  State<PatientLogin> createState() => _PatientLoginState();
+  ConsumerState<PatientLogin> createState() => _PatientLoginState();
 }
 
-class _PatientLoginState extends State<PatientLogin> {
+class _PatientLoginState extends ConsumerState<PatientLogin> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
@@ -36,6 +38,7 @@ class _PatientLoginState extends State<PatientLogin> {
                   Center(
                     child: Container(
                       child: TextFormField(
+                        controller: ref.read(patLoginRiverpod).email,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'E-mail Giriniz';
@@ -43,7 +46,6 @@ class _PatientLoginState extends State<PatientLogin> {
                           return null;
                         },
                         maxLines: 1,
-                        obscureText: true,
                         decoration: InputDecoration(
                             hintText: 'E-mail',
                             prefixIcon: const Icon(Icons.email),
@@ -62,6 +64,7 @@ class _PatientLoginState extends State<PatientLogin> {
                   ),
                   Container(
                     child: TextFormField(
+                      controller: ref.read(patLoginRiverpod).pass,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Şifre Giriniz';
@@ -86,9 +89,7 @@ class _PatientLoginState extends State<PatientLogin> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
-                    },
+                    onPressed: () => ref.read(patLoginRiverpod).fetch(),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                       backgroundColor: const Color.fromARGB(255, 78, 87, 100),

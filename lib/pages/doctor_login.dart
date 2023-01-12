@@ -1,4 +1,3 @@
-import 'package:doktorhasta/riverpod/doc_login_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/pages/doctor_register.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
@@ -39,13 +38,13 @@ class _DoctorLoginState extends ConsumerState<DoctorLogin> {
                   Center(
                     child: Container(
                       child: TextFormField(
-                        controller: ref.read(docLoginRiverpod).email,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'E-mail Giriniz';
                           }
                           return null;
                         },
+                        controller: ref.read(docLoginRiverpod).email,
                         maxLines: 1,
                         decoration: InputDecoration(
                             hintText: 'E-mail',
@@ -65,13 +64,13 @@ class _DoctorLoginState extends ConsumerState<DoctorLogin> {
                   ),
                   Container(
                     child: TextFormField(
-                      controller: ref.read(docLoginRiverpod).pass,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Şifre Giriniz';
                         }
                         return null;
                       },
+                      controller: ref.read(docLoginRiverpod).pass,
                       maxLines: 1,
                       obscureText: true,
                       decoration: InputDecoration(
@@ -114,8 +113,7 @@ class _DoctorLoginState extends ConsumerState<DoctorLogin> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegisterPage(title: 'Register UI'),
+                              builder: (context) => const RegisterPage(),
                             ),
                           );
                         },

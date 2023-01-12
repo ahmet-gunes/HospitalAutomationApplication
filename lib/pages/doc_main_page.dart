@@ -4,24 +4,25 @@ import 'package:flutter/material.dart';
 
 class DoctorMainPage extends StatefulWidget {
   const DoctorMainPage({Key? key, required this.doc}) : super(key: key);
-  final doctorDataModel doc;
+  final doctorDataModel? doc;
 
   @override
+  // ignore: no_logic_in_create_state
   State<DoctorMainPage> createState() => _DoctorMainPageState(doc: doc);
 }
 
 class _DoctorMainPageState extends State<DoctorMainPage> {
   _DoctorMainPageState({required this.doc});
-  final doctorDataModel doc;
+  final doctorDataModel? doc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.mavi2,
         automaticallyImplyLeading: false,
-        title: Center(
+        title: const Center(
             child: Text(
-          'DOKTOR ADI',
+          'DOKTOR',
           style: TextStyle(color: ColorConstants.mavi4),
         )),
       ),
@@ -35,7 +36,7 @@ class _DoctorMainPageState extends State<DoctorMainPage> {
             width: 150,
             height: 150,
             color: Colors.black,
-            child: Center(
+            child: const Center(
               child: Text(
                 'FOTO',
                 style: TextStyle(color: Colors.white),
@@ -45,10 +46,10 @@ class _DoctorMainPageState extends State<DoctorMainPage> {
           Container(
             height: 20,
           ),
-          ltOlustur('Doktorun Adı', doc.doctorName),
-          ltOlustur('Ana Bölümü', doc.doctorDiscipline),
-          ltOlustur('Yan Bölümleri', doc.doctorMastery1),
-          ltOlustur('Mezun Olduğu Yer', doc.doctorGraduate),
+          ltOlustur('Doktorun Adı', doc?.doctorName),
+          ltOlustur('Ana Bölümü', doc?.doctorDiscipline),
+          ltOlustur('Yan Bölümleri', doc?.doctorMastery1),
+          ltOlustur('Mezun Olduğu Yer', doc?.doctorGraduate),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -59,13 +60,13 @@ class _DoctorMainPageState extends State<DoctorMainPage> {
     );
   }
 
-  ListTile ltOlustur(String soru, String cevap) {
+  ListTile ltOlustur(String soru, String? cevap) {
     return ListTile(
       title: Text(
         soru,
         style: TextStyle(color: ColorConstants.mavi2),
       ),
-      subtitle: Text(cevap, style: TextStyle(color: ColorConstants.mavi3)),
+      subtitle: Text(cevap!, style: TextStyle(color: ColorConstants.mavi3)),
       leading: Icon(Icons.donut_large),
     );
   }
