@@ -4,7 +4,7 @@ import 'package:doktorhasta/config/color_constants.dart';
 
 class PatientMainPage extends StatefulWidget {
   const PatientMainPage({Key? key, required this.pat}) : super(key: key);
-  final patientDataModel pat;
+  final PatientDataModel pat;
 
   @override
   // ignore: no_logic_in_create_state
@@ -13,7 +13,7 @@ class PatientMainPage extends StatefulWidget {
 
 class _PatientMainPageState extends State<PatientMainPage> {
   _PatientMainPageState({required this.pat});
-  final patientDataModel pat;
+  final PatientDataModel pat;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class _PatientMainPageState extends State<PatientMainPage> {
             height: 25,
           ),
           Container(
-            padding: EdgeInsets.all(50),
+            padding: const EdgeInsets.all(50),
             width: 150,
             height: 150,
             color: Colors.black,
@@ -46,14 +46,14 @@ class _PatientMainPageState extends State<PatientMainPage> {
           Container(
             height: 20,
           ),
-          ltOlustur('Hastanın Adı', pat.PatientName),
-          ltOlustur('Cinsiyet', pat.PatientGender),
+          ltOlustur('Hastanın Adı', pat.patientName),
+          ltOlustur('Cinsiyet', pat.patientGender),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorConstants.mavi2,
         onPressed: () {},
-        child: Icon(Icons.message),
+        child: const Icon(Icons.message),
       ),
     );
   }
@@ -62,10 +62,11 @@ class _PatientMainPageState extends State<PatientMainPage> {
     return ListTile(
       title: Text(
         soru,
-        style: TextStyle(color: ColorConstants.mavi2),
+        style: const TextStyle(color: ColorConstants.mavi2),
       ),
-      subtitle: Text(cevap, style: TextStyle(color: ColorConstants.mavi3)),
-      leading: Icon(Icons.donut_large),
+      subtitle:
+          Text(cevap, style: const TextStyle(color: ColorConstants.mavi3)),
+      leading: const Icon(Icons.donut_large),
     );
   }
 }

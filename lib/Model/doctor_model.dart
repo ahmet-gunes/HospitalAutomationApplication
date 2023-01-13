@@ -1,19 +1,19 @@
-class doctorDataModel {
+class DoctorDataModel {
   final int doctorID;
   final String doctorName;
   final String doctorMail;
   final int doctorPassword;
-  final Null doctorPhoto;
+  final String? doctorPhoto;
   final String doctorGender;
   final String doctorDiscipline;
   final String doctorMastery1;
-  final Null doctorMastery2;
-  final Null doctorMastery3;
+  final String? doctorMastery2;
+  final String? doctorMastery3;
   final String doctorGraduate;
   final String doctorWorkplace;
   final int doctorOnline;
 
-  doctorDataModel(
+  DoctorDataModel(
       this.doctorID,
       this.doctorName,
       this.doctorMail,
@@ -28,7 +28,7 @@ class doctorDataModel {
       this.doctorWorkplace,
       this.doctorOnline);
 
-  doctorDataModel.fromJson(Map<String, dynamic> json)
+  DoctorDataModel.fromJson(Map<String, dynamic> json)
       : doctorID = json['doctorID'],
         doctorName = json['doctorName'],
         doctorMail = json['doctorMail'],

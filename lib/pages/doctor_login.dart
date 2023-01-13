@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/pages/doctor_register.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
@@ -23,11 +25,11 @@ class _DoctorLoginState extends ConsumerState<DoctorLogin> {
           children: [
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 50),
+                alignment: Alignment.center,
                 child: Image.asset(
                   'assets/images/login.png',
                 ),
-                alignment: Alignment.center,
               ),
             ),
             Form(

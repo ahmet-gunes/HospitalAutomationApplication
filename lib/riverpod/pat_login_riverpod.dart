@@ -1,11 +1,12 @@
+import 'package:doktorhasta/Model/patient_model.dart';
+import 'package:doktorhasta/pages/patient_home.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/config/loading_popup.dart';
 import 'package:doktorhasta/service/patient_login_service.dart';
 import 'package:grock/grock.dart';
-import 'package:doktorhasta/pages/patient_main_page.dart';
 
 class PatLoginRiverpod extends ChangeNotifier {
-  final service = pat_login_service();
+  final service = Pat_Login_Service();
 
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
@@ -17,9 +18,10 @@ class PatLoginRiverpod extends ChangeNotifier {
           .pat_login_call(email: email.text, pass: int.parse(pass.text))
           .then((value) {
         if (value != null) {
+          PatientDataModel pat = value;
           Grock.back();
-          Grock.toRemove(PatientMainPage(
-            pat: value,
+          Grock.toRemove(Patient_Home(
+            pat: pat,
           ));
         } else {
           Grock.back();

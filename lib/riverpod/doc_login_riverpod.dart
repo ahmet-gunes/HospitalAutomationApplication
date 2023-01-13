@@ -5,7 +5,7 @@ import 'package:grock/grock.dart';
 import '../pages/doc_main_page.dart';
 
 class DocLoginRiverpod extends ChangeNotifier {
-  final service = doc_login_service();
+  final service = Doc_login_service();
 
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:doktorhasta/service/pat_register_service.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class PatRegisterRiverpod extends ChangeNotifier {
       }).then((value) {
         if (value == true) {
           Grock.back();
-          Grock.toRemove(HomePage());
+          Grock.toRemove(const HomePage());
           Grock.snackBar(
               title: "Kayıt Başarılı",
               description: "Hesabınıza Giriş Yapabilirsiniz.");

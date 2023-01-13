@@ -1,38 +1,38 @@
-class patientDataModel {
-  final int PatientID;
-  final String PatientMail;
-  final int PatientPassword;
-  final String PatientName;
-  final String PatientGender;
-  final Null PatientPhoto;
-  final int PatientOnline;
+class PatientDataModel {
+  final int patientID;
+  final String patientMail;
+  final int patientPassword;
+  final String patientName;
+  final String patientGender;
+  final String? patientPhoto;
+  final int patientOnline;
 
-  patientDataModel(
-    this.PatientID,
-    this.PatientMail,
-    this.PatientPassword,
-    this.PatientName,
-    this.PatientGender,
-    this.PatientPhoto,
-    this.PatientOnline,
+  PatientDataModel(
+    this.patientID,
+    this.patientMail,
+    this.patientPassword,
+    this.patientName,
+    this.patientGender,
+    this.patientPhoto,
+    this.patientOnline,
   );
 
-  patientDataModel.fromJson(Map<String, dynamic> json)
-      : PatientID = json['PatientID'],
-        PatientMail = json['PatientMail'],
-        PatientPassword = json['PatientPassword'],
-        PatientName = json['PatientName'],
-        PatientGender = json['PatientGender'],
-        PatientPhoto = json['PatientPhoto'],
-        PatientOnline = json['PatientOnline'];
+  PatientDataModel.fromJson(Map<String, dynamic> json)
+      : patientID = json['PatientID'],
+        patientMail = json['PatientMail'],
+        patientPassword = json['PatientPassword'],
+        patientName = json['PatientName'],
+        patientGender = json['PatientGender'],
+        patientPhoto = json['PatientPhoto'],
+        patientOnline = json['PatientOnline'];
 
   Map<String, dynamic> toJson() => {
-        'PatientID': PatientID,
-        'PatientMail': PatientMail,
-        'PatientPassword': PatientPassword,
-        'PatientName': PatientName,
-        'PatientGender': PatientGender,
-        'PatientPhoto': PatientPhoto,
-        'PatientOnline': PatientOnline
+        'PatientID': patientID,
+        'PatientMail': patientMail,
+        'PatientPassword': patientPassword,
+        'PatientName': patientName,
+        'PatientGender': patientGender,
+        'PatientPhoto': patientPhoto,
+        'PatientOnline': patientOnline
       };
 }

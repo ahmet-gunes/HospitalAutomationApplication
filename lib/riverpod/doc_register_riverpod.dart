@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:doktorhasta/service/doc_register_service.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +25,6 @@ class DocRegisterRiverpod extends ChangeNotifier {
         pass.text != "" &&
         discipline.text != "" &&
         mastery1.text != "" &&
-        mastery2.text != "" &&
-        mastery3.text != "" &&
         gender.text != "" &&
         graduate.text != "" &&
         workplace.text != "") {
@@ -47,7 +44,7 @@ class DocRegisterRiverpod extends ChangeNotifier {
       }).then((value) {
         if (value == true) {
           Grock.back();
-          Grock.toRemove(HomePage());
+          Grock.toRemove(const HomePage());
           Grock.snackBar(
               title: "Kayıt Başarılı",
               description: "Hesabınıza Giriş Yapabilirsiniz.");
