@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 11 Oca 2023, 12:25:16
+-- Üretim Zamanı: 13 Oca 2023, 13:39:26
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -43,7 +43,14 @@ CREATE TABLE IF NOT EXISTS `doctor` (
   `doctorWorkplace` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorOnline` tinyint(1) NOT NULL,
   PRIMARY KEY (`doctorID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+
+--
+-- Tablo döküm verisi `doctor`
+--
+
+INSERT INTO `doctor` (`doctorID`, `doctorName`, `doctorMail`, `doctorPassword`, `doctorPhoto`, `doctorGender`, `doctorDiscipline`, `doctorMastery1`, `doctorMastery2`, `doctorMastery3`, `doctorGraduate`, `doctorWorkplace`, `doctorOnline`) VALUES
+(5, 'halil', 'halil@gmail.com', 1212, NULL, 'erkek gibi erkek', 'erkek doktoru', 'testesteron üreticisi', NULL, NULL, 'kısmetse olur', 'ağrı', 0);
 
 -- --------------------------------------------------------
 
@@ -55,10 +62,21 @@ DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `messageReciever` int(10) NOT NULL,
   `messageSender` int(10) NOT NULL,
+  `SenderName` varchar(100) COLLATE utf16_turkish_ci NOT NULL,
   `messageText` varchar(500) COLLATE utf16_turkish_ci DEFAULT NULL,
   `messageMedia` mediumblob,
   `messageDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+
+--
+-- Tablo döküm verisi `message`
+--
+
+INSERT INTO `message` (`messageReciever`, `messageSender`, `SenderName`, `messageText`, `messageMedia`, `messageDate`) VALUES
+(5, 1, 'Zeyd', 'SELAM', NULL, '2023-01-13 16:25:45'),
+(5, 1, 'zeyd', 'eyw', NULL, '2023-01-13 16:37:08'),
+(5, 1, 'zeyd', 'naber', NULL, '2023-01-13 16:37:17'),
+(1, 5, 'halil', 'zort', NULL, '2023-01-13 16:37:28');
 
 -- --------------------------------------------------------
 
@@ -76,7 +94,14 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `PatientPhoto` mediumblob,
   `PatientOnline` tinyint(1) NOT NULL,
   PRIMARY KEY (`PatientID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
+
+--
+-- Tablo döküm verisi `patient`
+--
+
+INSERT INTO `patient` (`PatientID`, `PatientMail`, `PatientPassword`, `PatientName`, `PatientGender`, `PatientPhoto`, `PatientOnline`) VALUES
+(1, 'zeyd@gmail.com', 3131, 'Zeyd', 'Zeyd', NULL, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

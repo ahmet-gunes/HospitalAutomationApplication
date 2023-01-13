@@ -1,6 +1,6 @@
 # mpapp
 
-A new Flutter project.
+Communicate Application for doctors and patients
 
 ## Getting Started
 
