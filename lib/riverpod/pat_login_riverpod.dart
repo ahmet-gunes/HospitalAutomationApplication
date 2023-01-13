@@ -1,26 +1,27 @@
+import 'package:doktorhasta/Model/patient_model.dart';
+import 'package:doktorhasta/pages/patient_home.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/config/loading_popup.dart';
-import 'package:doktorhasta/service/doc_login_service.dart';
+import 'package:doktorhasta/service/patient_login_service.dart';
 import 'package:grock/grock.dart';
-import '../pages/doc_main_page.dart';
 
-class DocLoginRiverpod extends ChangeNotifier {
-  final service = Doc_login_service();
+class PatLoginRiverpod extends ChangeNotifier {
+  final service = Pat_Login_Service();
 
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
   void fetch() {
     loadingPopup();
-    // ignore: unrelated_type_equality_checks
     if (pass.text != "" && email.text != "") {
       service
-          .doc_login_call(email: email.text, pass: int.parse(pass.text))
+          .pat_login_call(email: email.text, pass: int.parse(pass.text))
           .then((value) {
         if (value != null) {
+          PatientDataModel pat = value;
           Grock.back();
-          Grock.toRemove(DoctorMainPage(
-            doc: value,
+          Grock.toRemove(Patient_Home(
+            pat: pat,
           ));
         } else {
           Grock.back();

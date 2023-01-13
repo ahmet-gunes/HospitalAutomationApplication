@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/pages/patient_register.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 
-class PatientLogin extends StatefulWidget {
+class PatientLogin extends ConsumerStatefulWidget {
   const PatientLogin({Key? key}) : super(key: key);
 
   @override
-  State<PatientLogin> createState() => _PatientLoginState();
+  ConsumerState<PatientLogin> createState() => _PatientLoginState();
 }
 
-class _PatientLoginState extends State<PatientLogin> {
+class _PatientLoginState extends ConsumerState<PatientLogin> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
@@ -21,11 +23,11 @@ class _PatientLoginState extends State<PatientLogin> {
           children: [
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 50),
+                alignment: Alignment.center,
                 child: Image.asset(
                   'assets/images/login.png',
                 ),
-                alignment: Alignment.center,
               ),
             ),
             Form(
@@ -34,45 +36,18 @@ class _PatientLoginState extends State<PatientLogin> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Center(
-                    child: Container(
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'E-mail Giriniz';
-                          }
-                          return null;
-                        },
-                        maxLines: 1,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            hintText: 'E-mail',
-                            prefixIcon: const Icon(Icons.email),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Color.fromARGB(255, 78, 87, 100),
-                            ))),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
                     child: TextFormField(
+                      controller: ref.read(patLoginRiverpod).email,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Şifre Giriniz';
+                          return 'E-mail Giriniz';
                         }
                         return null;
                       },
                       maxLines: 1,
-                      obscureText: true,
                       decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          hintText: 'Şifre',
+                          hintText: 'E-mail',
+                          prefixIcon: const Icon(Icons.email),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -85,10 +60,32 @@ class _PatientLoginState extends State<PatientLogin> {
                   const SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                  TextFormField(
+                    controller: ref.read(patLoginRiverpod).pass,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Şifre Giriniz';
+                      }
+                      return null;
                     },
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock),
+                        hintText: 'Şifre',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color.fromARGB(255, 78, 87, 100),
+                        ))),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () => ref.read(patLoginRiverpod).fetch(),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                       backgroundColor: const Color.fromARGB(255, 78, 87, 100),

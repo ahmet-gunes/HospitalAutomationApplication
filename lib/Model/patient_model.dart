@@ -1,39 +1,38 @@
-class patientDataModel {
-  int? PatientID;
-  String? PatientMail;
-  int? PatientPassword;
-  String? PatientName;
-  String? PatientGender;
-  String? PatientPhoto;
-  int? PatientOnline;
+class PatientDataModel {
+  final int patientID;
+  final String patientMail;
+  final int patientPassword;
+  final String patientName;
+  final String patientGender;
+  final String? patientPhoto;
+  final int patientOnline;
 
-  patientDataModel({
-    this.PatientID,
-    this.PatientMail,
-    this.PatientPassword,
-    this.PatientName,
-    this.PatientGender,
-    this.PatientPhoto,
-    this.PatientOnline,
-  });
-  patientDataModel.fromJson(Map<String, dynamic> json) {
-    PatientID = json['PatientID']?.toInt();
-    PatientMail = json['PatientMail']?.toString();
-    PatientPassword = json['PatientPassword']?.toInt();
-    PatientName = json['PatientName']?.toString();
-    PatientGender = json['PatientGender']?.toString();
-    PatientPhoto = json['PatientPhoto']?.toString();
-    PatientOnline = json['PatientOnline']?.toInt();
-  }
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['PatientID'] = PatientID;
-    data['PatientMail'] = PatientMail;
-    data['PatientPassword'] = PatientPassword;
-    data['PatientName'] = PatientName;
-    data['PatientGender'] = PatientGender;
-    data['PatientPhoto'] = PatientPhoto;
-    data['PatientOnline'] = PatientOnline;
-    return data;
-  }
+  PatientDataModel(
+    this.patientID,
+    this.patientMail,
+    this.patientPassword,
+    this.patientName,
+    this.patientGender,
+    this.patientPhoto,
+    this.patientOnline,
+  );
+
+  PatientDataModel.fromJson(Map<String, dynamic> json)
+      : patientID = json['PatientID'],
+        patientMail = json['PatientMail'],
+        patientPassword = json['PatientPassword'],
+        patientName = json['PatientName'],
+        patientGender = json['PatientGender'],
+        patientPhoto = json['PatientPhoto'],
+        patientOnline = json['PatientOnline'];
+
+  Map<String, dynamic> toJson() => {
+        'PatientID': patientID,
+        'PatientMail': patientMail,
+        'PatientPassword': patientPassword,
+        'PatientName': patientName,
+        'PatientGender': patientGender,
+        'PatientPhoto': patientPhoto,
+        'PatientOnline': patientOnline
+      };
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage} from './database.js'
+import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -59,5 +59,16 @@ app.post("/message", async(req, res) =>{
     const {messageSender, messageReciever, messageText, messageMedia} = req.body;
     const message = await setMessage(messageSender, messageReciever, messageText, messageMedia);
         res.send(message)
+})
 
+app.patch("/patient", async(req,res)=>{
+    const {PatientName , PatientPassword , PatientMail , PatientPhoto, PatientID} = req.body;
+    const patient = await updatePatient(PatientName , PatientPassword , PatientMail , PatientPhoto, PatientID);
+        res.send(patient)
+})
+
+app.patch("/doctor", async(req,res)=>{
+    const {doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorID} = req.body;
+    const doctor = await updateDoctor(doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorID);
+        res.send(doctor)
 })

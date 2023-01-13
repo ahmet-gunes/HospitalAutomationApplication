@@ -1,12 +1,12 @@
-class doctorLoginModel {
+class DoctorLoginModel {
   String? doctorMail;
   int? doctorPassword;
 
-  doctorLoginModel({
+  DoctorLoginModel({
     this.doctorMail,
     this.doctorPassword,
   });
-  doctorLoginModel.fromJson(Map<String, dynamic> json) {
+  DoctorLoginModel.fromJson(Map<String, dynamic> json) {
     doctorMail = json['doctorMail']?.toString();
     doctorPassword = json['doctorPassword']?.toInt();
   }

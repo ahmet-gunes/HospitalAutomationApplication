@@ -22,14 +22,14 @@ export async function getPatients(){
     return rows
 }
 
-export async function getDoctor(email, pass){
-    const [rows] = await pool.query("SELECT * FROM doctor WHERE doctorMail = ? AND doctorPassword = ?", [email, pass])
-    return rows[0]
+export async function getDoctor(mail, pass){
+    const [rows] = await pool.query("SELECT * FROM doctor WHERE doctorMail = ? AND doctorPassword = ?", [mail, pass])
+    return rows
 }
 
-export async function getPatient(email, pass){
-    const [rows] = await pool.query("SELECT * FROM patient WHERE PatientMail = ? AND PatientPassword = ?", [email, pass])
-    return rows[0]
+export async function getPatient(mail, pass){
+    const [rows] = await pool.query("SELECT * FROM patient WHERE PatientMail = ? AND PatientPassword = ?", [mail, pass])
+    return rows
 }
 
 export async function getMessages(sender,reciever){
@@ -51,3 +51,14 @@ export async function setMessage(sender, reciever, content, media) {
     const [rows] = await pool.query("INSERT INTO message(messageSender, messageReciever, messageText,messageMedia) VALUES (?,?,?,?)" ,[sender,reciever, content, media])
     return rows
 }
+
+export async function updatePatient(name, pass, mail, photo, ID) {
+    const [rows] = await pool.query("UPDATE patient SET PatientName = ?, PatientPassword = ?, PatientMail = ?, PatientPhoto = ? WHERE PatientID = ?", [name, pass, mail, photo, ID])
+    return getPatient(mail, pass)
+}
+
+export async function updateDoctor(name, pass, mail, photo, workplace ,graduate, disc, mastery1, mastery2, mastery3, ID) {
+    const [rows] = await pool.query("UPDATE doctor SET doctorName = ?, doctorPassword = ?, doctorMail = ?, doctorPhoto = ?, doctorWorkplace = ?, doctorGraduate = ?, doctorDiscipline = ?, doctorMastery1 = ?, doctorMastery2 = ?, doctorMastery3 = ?  WHERE doctorID = ?", [name, pass, mail, photo, workplace, graduate, disc, mastery1, mastery2, mastery3, ID])
+    return getDoctor(mail, pass)
+}
+

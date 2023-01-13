@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
 
 class PatientMainPage extends StatefulWidget {
-  const PatientMainPage({super.key});
+  const PatientMainPage({Key? key, required this.pat}) : super(key: key);
+  final PatientDataModel pat;
 
   @override
-  State<PatientMainPage> createState() => _PatientMainPageState();
+  // ignore: no_logic_in_create_state
+  State<PatientMainPage> createState() => _PatientMainPageState(pat: pat);
 }
 
 class _PatientMainPageState extends State<PatientMainPage> {
+  _PatientMainPageState({required this.pat});
+  final PatientDataModel pat;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.mavi2,
         automaticallyImplyLeading: false,
-        title: Center(
+        title: const Center(
             child: Text(
-          'HASTA ADI',
+          'HASTA',
           style: TextStyle(color: ColorConstants.mavi4),
         )),
       ),
@@ -29,11 +32,11 @@ class _PatientMainPageState extends State<PatientMainPage> {
             height: 25,
           ),
           Container(
-            padding: EdgeInsets.all(50),
+            padding: const EdgeInsets.all(50),
             width: 150,
             height: 150,
             color: Colors.black,
-            child: Center(
+            child: const Center(
               child: Text(
                 'FOTO',
                 style: TextStyle(color: Colors.white),
@@ -43,14 +46,14 @@ class _PatientMainPageState extends State<PatientMainPage> {
           Container(
             height: 20,
           ),
-          ltOlustur('Hastanın Adı', ''),
-          ltOlustur('Cinsiyet', ''),
+          ltOlustur('Hastanın Adı', pat.patientName),
+          ltOlustur('Cinsiyet', pat.patientGender),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorConstants.mavi2,
         onPressed: () {},
-        child: Icon(Icons.message),
+        child: const Icon(Icons.message),
       ),
     );
   }
@@ -59,10 +62,11 @@ class _PatientMainPageState extends State<PatientMainPage> {
     return ListTile(
       title: Text(
         soru,
-        style: TextStyle(color: ColorConstants.mavi2),
+        style: const TextStyle(color: ColorConstants.mavi2),
       ),
-      subtitle: Text(cevap, style: TextStyle(color: ColorConstants.mavi3)),
-      leading: Icon(Icons.donut_large),
+      subtitle:
+          Text(cevap, style: const TextStyle(color: ColorConstants.mavi3)),
+      leading: const Icon(Icons.donut_large),
     );
   }
 }
