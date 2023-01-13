@@ -69,8 +69,8 @@ app.post("/patient", async(req, res) =>{
 })
 
 app.post("/message", async(req, res) =>{
-    const {messageSender, messageReciever, messageText, messageMedia} = req.body;
-    const message = await setMessage(messageSender, messageReciever, messageText, messageMedia);
+    const {messageSender, SenderName , messageReciever, messageText, messageMedia} = req.body;
+    const message = await setMessage(messageSender,SenderName, messageReciever, messageText, messageMedia);
         res.send(message)
 })
 

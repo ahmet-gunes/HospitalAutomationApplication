@@ -57,8 +57,8 @@ export async function setPatient(name, mail, pass, photo, gender, online) {
     return rows
 }
 
-export async function setMessage(sender, reciever, content, media) {
-    const [rows] = await pool.query("INSERT INTO message(messageSender, messageReciever, messageText,messageMedia) VALUES (?,?,?,?)" ,[sender,reciever, content, media])
+export async function setMessage(sender, sname , reciever, content, media) {
+    const [rows] = await pool.query("INSERT INTO message(messageSender, SenderName, messageReciever, messageText,messageMedia) VALUES (?,?,?,?,?)" ,[sender, sname, reciever, content, media])
     return rows
 }
 
