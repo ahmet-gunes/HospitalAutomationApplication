@@ -1,5 +1,5 @@
 import express from 'express'
-import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor} from './database.js'
+import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor, getDoctorByID, getPatientByID} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -18,9 +18,22 @@ app.get("/doctors",async (req, res)=>{
     res.send(doctors)
 })
 
+app.get("/doctor/id",async (req, res)=>{
+    const{doctorID} = req.body
+    const doctor = await getDoctorByID(doctorID)
+    res.send(doctor)
+})
+
+
 app.get("/patients",async (req, res)=>{
     const patients = await getPatients()
     res.send(patients)
+})
+
+app.get("/patient/id",async (req, res)=>{
+    const{patientID} = req.body
+    const patient = await getPatientByID(patientID)
+    res.send(patient)
 })
 
 app.get("/messages", async (req, res)=>{
