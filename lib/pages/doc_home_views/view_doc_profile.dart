@@ -27,12 +27,14 @@ class _DocProfileState extends ConsumerState<DocProfile> {
             children: [
               const SizedBox(height: 40),
               Center(
-                  child: CircleAvatar(
-                      backgroundColor: Colors.white60,
-                      radius: 70,
-                      child: Image.asset(
-                        'assets/images/default_avatar.png',
-                      ))),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white60,
+                  radius: 70,
+                  child: Image.asset(
+                    'assets/images/default_avatar.png',
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -87,12 +89,13 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                             ),
                           ])),
                       Container(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          margin: const EdgeInsets.only(bottom: 4),
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 118, 127, 138),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(children: [
+                        padding: const EdgeInsets.only(bottom: 10),
+                        margin: const EdgeInsets.only(bottom: 4),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 118, 127, 138),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
                             const SizedBox(
                               height: 10,
                             ),
@@ -117,7 +120,9 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                                 ),
                               ],
                             ),
-                          ])),
+                          ],
+                        ),
+                      ),
                       Container(
                           margin: const EdgeInsets.only(bottom: 4),
                           padding: const EdgeInsets.only(bottom: 10),

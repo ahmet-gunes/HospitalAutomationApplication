@@ -43,22 +43,25 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                   padding: EdgeInsets.only(top: 35, left: 10, right: 10),
                   itemBuilder: (context, index) {
                     var doctor = doctorList[index];
-                    return Card(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 25,
-                            width: 25,
-                            color: Colors.red,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(doctor.doctorName),
-                              Text(doctor.doctorDiscipline),
-                            ],
-                          ),
-                        ],
+                    return InkWell(
+                      onTap: () {},
+                      child: Card(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 25,
+                              width: 25,
+                              color: Colors.red,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(doctor.doctorName),
+                                Text(doctor.doctorDiscipline),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -74,22 +77,3 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
     );
   }
 }
-
-
-/*
-ListTile(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.black, width: 2),
-                      ),
-                      leading: CircleAvatar(backgroundColor: Colors.black),
-                      title: Text(
-                        doctor.doctorName,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      subtitle: Text(
-                        doctor.doctorDiscipline,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    );
-*/
