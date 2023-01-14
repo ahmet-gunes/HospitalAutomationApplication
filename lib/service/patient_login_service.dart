@@ -4,7 +4,7 @@ import 'package:doktorhasta/Model/patient_model.dart';
 
 // ignore: camel_case_types
 class Pat_Login_Service {
-  final String baseurl = "http://192.168.1.101:8080";
+  final String baseurl = "http://192.168.1.2:8080";
   final dio = Dio();
 
   // ignore: non_constant_identifier_names

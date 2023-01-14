@@ -13,7 +13,7 @@ class ViewDocs extends ConsumerStatefulWidget {
 }
 
 Future<List<DoctorDataModel>> _getDoctorList() async {
-  const String baseurl = "http://192.168.1.101:8080";
+  const String baseurl = "http://192.168.1.2:8080";
   try {
     var response = await Dio().get("$baseurl/doctors");
     List<DoctorDataModel>? doctorList = [];
@@ -40,11 +40,26 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
             if (snapshot.hasData) {
               var doctorList = snapshot.data!;
               return ListView.builder(
+                  padding: EdgeInsets.only(top: 35, left: 10, right: 10),
                   itemBuilder: (context, index) {
                     var doctor = doctorList[index];
-                    return ListTile(
-                      title: Text(doctor.doctorName),
-                      subtitle: Text(doctor.doctorDiscipline),
+                    return Card(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 25,
+                            width: 25,
+                            color: Colors.red,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(doctor.doctorName),
+                              Text(doctor.doctorDiscipline),
+                            ],
+                          ),
+                        ],
+                      ),
                     );
                   },
                   itemCount: doctorList.length);
@@ -59,3 +74,22 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
     );
   }
 }
+
+
+/*
+ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Colors.black, width: 2),
+                      ),
+                      leading: CircleAvatar(backgroundColor: Colors.black),
+                      title: Text(
+                        doctor.doctorName,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      subtitle: Text(
+                        doctor.doctorDiscipline,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+*/

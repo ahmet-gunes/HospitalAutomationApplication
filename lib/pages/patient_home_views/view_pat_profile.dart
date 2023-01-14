@@ -166,7 +166,7 @@ class _PatProfileState extends ConsumerState<PatProfile> {
                 ),
               ),
               const SizedBox(
-                height: 180,
+                height: 50,
               ),
               TextButton(
                 onPressed: () async {
