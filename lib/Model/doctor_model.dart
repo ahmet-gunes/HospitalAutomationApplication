@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+
 class DoctorDataModel {
   final int doctorID;
   final String doctorName;
   final String doctorMail;
   final int doctorPassword;
-  final String? doctorPhoto;
+  var doctorPhoto;
   final String doctorGender;
   final String doctorDiscipline;
   final String doctorMastery1;
@@ -12,7 +16,6 @@ class DoctorDataModel {
   final String doctorGraduate;
   final String doctorWorkplace;
   final int doctorOnline;
-
   DoctorDataModel(
       this.doctorID,
       this.doctorName,
