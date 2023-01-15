@@ -1,6 +1,12 @@
-# mpapp
+# Mobile Programming Project
 
 Communicate Application for doctors and patients
+
+by:
+-Ahmet Güneş
+-Ahmet Usta
+-Bilal Metehan Karabulut
+-Hakan Mert Baran
 
 ## Getting Started
 
