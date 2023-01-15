@@ -19,7 +19,7 @@ class ViewDocs extends ConsumerStatefulWidget {
 
 List<DoctorDataModel> docList = [];
 Future<List<DoctorDataModel>> _getDoctorList() async {
-  const String baseurl = "http://192.168.1.102:8080";
+  const String baseurl = "http://192.168.1.101:8080";
   try {
     var response = await Dio().get("$baseurl/doctors");
     List<DoctorDataModel>? doctorList = [];
@@ -81,17 +81,28 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                     child: Card(
                       child: Row(
                         children: [
-                          Container(
-                            height: 25,
-                            width: 25,
-                            color: Colors.red,
+                          ClipOval(
+                            child: SizedBox.fromSize(
+                                size: const Size.fromRadius(35),
+                                child: (doctor.doctorPhoto != null)
+                                    ? Image.memory(
+                                        base64Decode(doctor.doctorPhoto),
+                                        fit: BoxFit.fill,
+                                      )
+                                    : (doctor.doctorGender == "erkek")
+                                        ? Image.asset("assets/images/male.png")
+                                        : Image.asset(
+                                            "assets/images/female.png")),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(doctor.doctorName),
-                              Text(doctor.doctorDiscipline),
-                            ],
+                          Container(
+                            margin: EdgeInsets.only(left: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(doctor.doctorName),
+                                Text(doctor.doctorDiscipline),
+                              ],
+                            ),
                           ),
                         ],
                       ),

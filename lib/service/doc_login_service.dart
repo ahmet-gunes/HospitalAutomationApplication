@@ -4,13 +4,20 @@ import 'package:dio/dio.dart';
 import 'package:doktorhasta/Model/doctor_model.dart';
 
 class Doc_login_service {
-  final String baseurl = "http://192.168.1.102:8080";
+  final String baseurl = "http://192.168.1.101:8080";
   final dio = Dio();
 
   Future<DoctorDataModel?> doc_login_call(
       {required String email, required int pass}) async {
     Map<String, dynamic> json = {"doctorMail": email, "doctorPassword": pass};
+    Map<String, dynamic> jsonx = {
+      "status": 1,
+      "doctorMail": email,
+      "doctorPassword": pass
+    };
     var response = await dio.post("$baseurl/logdoc", data: json);
+    var responsex = await dio.patch("$baseurl/doctor/online", data: jsonx);
+
     if (response.statusCode == 200) {
       // ignore: prefer_typing_uninitialized_variables
       var result;

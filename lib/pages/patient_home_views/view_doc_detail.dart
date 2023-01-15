@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,12 +32,20 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
             children: [
               const SizedBox(height: 40),
               Center(
-                  child: CircleAvatar(
-                      backgroundColor: Colors.white60,
-                      radius: 70,
-                      child: Image.asset(
-                        'assets/images/default_avatar.png',
-                      ))),
+                child: ClipOval(
+                  child: SizedBox.fromSize(
+                    size: const Size.fromRadius(80),
+                    child: (doc.doctorPhoto != null)
+                        ? Image.memory(
+                            base64Decode(doc.doctorPhoto),
+                            fit: BoxFit.fill,
+                          )
+                        : (doc.doctorGender == "erkek")
+                            ? Image.asset("assets/images/male.png")
+                            : Image.asset("assets/images/female.png"),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -52,10 +61,10 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(52, 255, 255, 255),
+                  color: const Color.fromARGB(52, 255, 255, 255),
                 ),
                 child: Column(children: [
                   Row(children: [
@@ -63,43 +72,45 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 15, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "İsim : ${doc.doctorName.replaceRange(0, 1, doc.doctorName[0].toUpperCase())}",
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           )),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 15, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "Cinsiyet : ${doc.doctorGender.replaceRange(0, 1, doc.doctorGender[0].toUpperCase())}",
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           )),
                         ),
                       ),
                     ),
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(children: [
@@ -107,43 +118,45 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 15, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "Mezuniyet : ${doc.doctorGraduate.replaceRange(0, 1, doc.doctorGraduate[0].toUpperCase())}",
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           )),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 15, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "Çalıştığı Yer : ${doc.doctorWorkplace.replaceRange(0, 1, doc.doctorWorkplace[0].toUpperCase())}",
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           )),
                         ),
                       ),
                     ),
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(children: [
@@ -151,29 +164,30 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 15, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "Bölüm : ${doc.doctorDiscipline.replaceRange(0, 1, doc.doctorDiscipline[0].toUpperCase())}",
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           )),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Expanded(
+                    const Expanded(
                         child: SizedBox(
                       width: 15,
                     ))
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(children: [
@@ -181,12 +195,12 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(198, 158, 175, 186),
+                          color: const Color.fromARGB(198, 158, 175, 186),
                         ),
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 10, left: 15, bottom: 10, right: 4),
                         alignment: Alignment.centerLeft,
-                        child: SingleChildScrollView(
+                        child: const SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: (Text(
                             "Uzmanlık : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -206,7 +220,7 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.blueGrey,
-        child: Icon(Icons.message),
+        child: const Icon(Icons.message),
       ),
     );
   }

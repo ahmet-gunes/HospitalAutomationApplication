@@ -71,3 +71,7 @@ export async function updateDoctor(name, pass, mail, photo, workplace ,graduate,
     const [rows] = await pool.query("UPDATE doctor SET doctorName = ?, doctorPassword = ?, doctorMail = ?, doctorPhoto = ?, doctorWorkplace = ?, doctorGraduate = ?, doctorDiscipline = ?, doctorMastery1 = ? WHERE doctorID = ?", [name, pass, mail, photo, workplace, graduate, disc, mastery1,ID])
     return getDoctor(mail, pass)
 }
+export async function doctorOnlineStatus(status, mail, pass) {
+    const [rows] = await pool.query("UPDATE doctor SET doctorOnline = ? WHERE (doctorMail = ? AND doctorPassword = ?)", [status, mail, pass])
+    return getDoctor(mail, pass)
+}
