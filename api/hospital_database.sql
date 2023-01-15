@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 14 Oca 2023, 22:31:33
+-- Üretim Zamanı: 15 Oca 2023, 16:03:52
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
   `doctorName` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorMail` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorPassword` int(8) NOT NULL,
-  `doctorPhoto` mediumblob,
+  `doctorPhoto` mediumtext COLLATE utf16_turkish_ci,
   `doctorGender` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorDiscipline` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorMastery1` varchar(500) COLLATE utf16_turkish_ci NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `PatientPassword` int(8) NOT NULL,
   `PatientName` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `PatientGender` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
-  `PatientPhoto` mediumblob,
+  `PatientPhoto` mediumtext COLLATE utf16_turkish_ci,
   `PatientOnline` tinyint(1) NOT NULL,
   PRIMARY KEY (`PatientID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf16 COLLATE=utf16_turkish_ci;
