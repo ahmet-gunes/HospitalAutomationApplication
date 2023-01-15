@@ -47,8 +47,8 @@ export async function getMessages(sender,reciever){
     return rows
 }
 
-export async function setDoctor(name, mail, pass, photo, gender, disc, mastery1, mastery2, mastery3, graduate, workplace, online) {
-    const [rows] = await pool.query("INSERT INTO doctor(doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorGraduate, doctorWorkplace, doctorOnline )VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ,[name, mail, pass, photo, gender, disc, mastery1, mastery2, mastery3, graduate, workplace, online])
+export async function setDoctor(name, mail, pass, photo, gender, disc, mastery1, graduate, workplace, online) {
+    const [rows] = await pool.query("INSERT INTO doctor(doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorGraduate, doctorWorkplace, doctorOnline )VALUES (?,?,?,?,?,?,?,?,?,?)" ,[name, mail, pass, photo, gender, disc, mastery1, graduate, workplace, online])
     return rows
 }
 
@@ -67,8 +67,7 @@ export async function updatePatient(name, pass, mail, photo, ID) {
     return getPatient(mail, pass)
 }
 
-export async function updateDoctor(name, pass, mail, photo, workplace ,graduate, disc, mastery1, mastery2, mastery3, ID) {
-    const [rows] = await pool.query("UPDATE doctor SET doctorName = ?, doctorPassword = ?, doctorMail = ?, doctorPhoto = ?, doctorWorkplace = ?, doctorGraduate = ?, doctorDiscipline = ?, doctorMastery1 = ?, doctorMastery2 = ?, doctorMastery3 = ?  WHERE doctorID = ?", [name, pass, mail, photo, workplace, graduate, disc, mastery1, mastery2, mastery3, ID])
+export async function updateDoctor(name, pass, mail, photo, workplace ,graduate, disc, mastery1, ID) {
+    const [rows] = await pool.query("UPDATE doctor SET doctorName = ?, doctorPassword = ?, doctorMail = ?, doctorPhoto = ?, doctorWorkplace = ?, doctorGraduate = ?, doctorDiscipline = ?, doctorMastery1 = ? WHERE doctorID = ?", [name, pass, mail, photo, workplace, graduate, disc, mastery1,ID])
     return getDoctor(mail, pass)
 }
-

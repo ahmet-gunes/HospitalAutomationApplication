@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 13 Oca 2023, 13:39:26
+-- Üretim Zamanı: 14 Oca 2023, 22:31:33
 -- Sunucu sürümü: 5.7.36
 -- PHP Sürümü: 7.4.26
 
@@ -36,9 +36,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
   `doctorPhoto` mediumblob,
   `doctorGender` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorDiscipline` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
-  `doctorMastery1` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
-  `doctorMastery2` varchar(50) COLLATE utf16_turkish_ci DEFAULT NULL,
-  `doctorMastery3` varchar(50) COLLATE utf16_turkish_ci DEFAULT NULL,
+  `doctorMastery1` varchar(500) COLLATE utf16_turkish_ci NOT NULL,
   `doctorGraduate` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorWorkplace` varchar(50) COLLATE utf16_turkish_ci NOT NULL,
   `doctorOnline` tinyint(1) NOT NULL,
@@ -49,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 -- Tablo döküm verisi `doctor`
 --
 
-INSERT INTO `doctor` (`doctorID`, `doctorName`, `doctorMail`, `doctorPassword`, `doctorPhoto`, `doctorGender`, `doctorDiscipline`, `doctorMastery1`, `doctorMastery2`, `doctorMastery3`, `doctorGraduate`, `doctorWorkplace`, `doctorOnline`) VALUES
-(5, 'halil', 'halil@gmail.com', 1212, NULL, 'erkek gibi erkek', 'erkek doktoru', 'testesteron üreticisi', NULL, NULL, 'kısmetse olur', 'ağrı', 0);
+INSERT INTO `doctor` (`doctorID`, `doctorName`, `doctorMail`, `doctorPassword`, `doctorPhoto`, `doctorGender`, `doctorDiscipline`, `doctorMastery1`, `doctorGraduate`, `doctorWorkplace`, `doctorOnline`) VALUES
+(5, 'halil', 'halil@gmail.com', 1212, NULL, 'erkek gibi erkek', 'erkek doktoru', 'testesteron üreticisi', 'kısmetse olur', 'ağrı', 0);
 
 -- --------------------------------------------------------
 
