@@ -55,10 +55,10 @@ app.post("/logdoc", async (req, res)=>{
 })
 
 app.post("/doctor", async(req, res) =>{
-    const {doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorMastery2, 
-        doctorMastery3, doctorGraduate, doctorWorkplace, doctorOnline} = req.body;
-    const doctor = await setDoctor(doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, doctorMastery2, 
-        doctorMastery3, doctorGraduate, doctorWorkplace, doctorOnline);
+    const {doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1,
+    doctorGraduate, doctorWorkplace, doctorOnline} = req.body;
+    const doctor = await setDoctor(doctorName, doctorMail, doctorPassword, doctorPhoto, doctorGender, doctorDiscipline, doctorMastery1, 
+    doctorGraduate, doctorWorkplace, doctorOnline);
         res.send(doctor)
 })
 
@@ -81,7 +81,7 @@ app.patch("/patient", async(req,res)=>{
 })
 
 app.patch("/doctor", async(req,res)=>{
-    const {doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorID} = req.body;
-    const doctor = await updateDoctor(doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1, doctorMastery2, doctorMastery3, doctorID);
+    const {doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1,doctorID} = req.body;
+    const doctor = await updateDoctor(doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1,doctorID);
         res.send(doctor)
 })
