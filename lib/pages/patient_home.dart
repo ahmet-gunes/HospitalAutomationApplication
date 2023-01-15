@@ -36,7 +36,7 @@ class _Patient_HomeState extends State<Patient_Home> {
         child: _selectedIndex == 0
             ? PatProfile(pat: pat)
             : _selectedIndex == 1
-                ? ViewDocs()
+                ? ViewDocs(pat: pat)
                 : Chats(),
       ),
       bottomNavigationBar: BottomNavigationBar(
