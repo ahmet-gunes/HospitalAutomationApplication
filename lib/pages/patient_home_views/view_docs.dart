@@ -12,6 +12,7 @@ class ViewDocs extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _ViewDocsState();
 }
 
+List<DoctorDataModel> docList = [];
 Future<List<DoctorDataModel>> _getDoctorList() async {
   const String baseurl = "http://192.168.1.2:8080";
   try {
@@ -23,6 +24,7 @@ Future<List<DoctorDataModel>> _getDoctorList() async {
           .cast<DoctorDataModel>()
           .toList();
     }
+    docList = doctorList;
     return doctorList;
   } on DioError catch (e) {
     return Future.error(e.message);
@@ -30,9 +32,26 @@ Future<List<DoctorDataModel>> _getDoctorList() async {
 }
 
 class _ViewDocsState extends ConsumerState<ViewDocs> {
+  Icon customIcon = const Icon(Icons.search);
+  Widget customSearchBar = const Text('My Personal Journal');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text('DOKTORLAR'),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: customSearchDelegate(),
+                );
+              },
+              icon: const Icon(Icons.search))
+        ],
+      ),
       body: Center(
         child: FutureBuilder<List<DoctorDataModel>>(
           future: _getDoctorList(),
@@ -40,7 +59,7 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
             if (snapshot.hasData) {
               var doctorList = snapshot.data!;
               return ListView.builder(
-                  padding: EdgeInsets.only(top: 35, left: 10, right: 10),
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
                   itemBuilder: (context, index) {
                     var doctor = doctorList[index];
                     return InkWell(
@@ -74,6 +93,69 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
           },
         ),
       ),
+    );
+  }
+}
+
+class customSearchDelegate extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      ),
+    ];
+  }
+
+  @override
+  IconButton buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var a in docList) {
+      if (a.doctorName.contains(query) || a.doctorDiscipline.contains(query)) {
+        matchQuery.add(a.doctorName);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var a in docList) {
+      if (a.doctorName.toLowerCase().contains(query) ||
+          a.doctorDiscipline.toLowerCase().contains(query)) {
+        matchQuery.add(a.doctorName);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
     );
   }
 }
