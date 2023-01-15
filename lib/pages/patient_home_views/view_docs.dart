@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/config/loading_popup.dart';
+import 'package:doktorhasta/pages/doc_main_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:grock/grock.dart';
 
 class ViewDocs extends ConsumerStatefulWidget {
   const ViewDocs({super.key});
@@ -14,7 +16,7 @@ class ViewDocs extends ConsumerStatefulWidget {
 
 List<DoctorDataModel> docList = [];
 Future<List<DoctorDataModel>> _getDoctorList() async {
-  const String baseurl = "http://192.168.1.2:8080";
+  const String baseurl = "http://192.168.1.102:8080";
   try {
     var response = await Dio().get("$baseurl/doctors");
     List<DoctorDataModel>? doctorList = [];
@@ -63,7 +65,9 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                   itemBuilder: (context, index) {
                     var doctor = doctorList[index];
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Grock.to(DoctorMainPage(doc: doctor));
+                      },
                       child: Card(
                         child: Row(
                           children: [
