@@ -17,13 +17,16 @@ class _PatientLoginState extends ConsumerState<PatientLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(20),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(
+          top: 100,
+          left: 25,
+          right: 25,
+        ),
         child: Stack(
           children: [
             SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.only(top: 50),
                 alignment: Alignment.center,
                 child: Image.asset(
                   'assets/images/login.png',

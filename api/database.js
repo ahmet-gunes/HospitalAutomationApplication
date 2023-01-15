@@ -24,7 +24,7 @@ export async function getPatients(){
 
 export async function getDoctor(mail, pass){
     const [rows] = await pool.query("SELECT * FROM doctor WHERE doctorMail = ? AND doctorPassword = ?", [mail, pass])
-    return rows
+    return rows[0]
 }
 
 export async function getDoctorByID(id){
@@ -34,7 +34,7 @@ export async function getDoctorByID(id){
 
 export async function getPatient(mail, pass){
     const [rows] = await pool.query("SELECT * FROM patient WHERE PatientMail = ? AND PatientPassword = ?", [mail, pass])
-    return rows
+    return rows[0]
 }
 
 export async function getPatientByID(id){

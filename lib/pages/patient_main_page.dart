@@ -7,7 +7,6 @@ class PatientMainPage extends StatefulWidget {
   final PatientDataModel pat;
 
   @override
-  // ignore: no_logic_in_create_state
   State<PatientMainPage> createState() => _PatientMainPageState(pat: pat);
 }
 
@@ -21,10 +20,11 @@ class _PatientMainPageState extends State<PatientMainPage> {
         backgroundColor: ColorConstants.mavi2,
         automaticallyImplyLeading: false,
         title: const Center(
-            child: Text(
-          'HASTA',
-          style: TextStyle(color: ColorConstants.mavi4),
-        )),
+          child: Text(
+            'HASTA',
+            style: TextStyle(color: ColorConstants.mavi4),
+          ),
+        ),
       ),
       body: Column(
         children: [

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:doktorhasta/Model/doctor_model.dart';
 
 class Doc_login_service {
-  final String baseurl = "http://192.168.1.104:8080";
+  final String baseurl = "http://192.168.1.2:8080";
   final dio = Dio();
 
   Future<DoctorDataModel?> doc_login_call(

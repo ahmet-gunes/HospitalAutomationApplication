@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 // ignore: camel_case_types
 class pat_register_service {
-  final String baseurl = "http://192.168.1.104:8080";
+  final String baseurl = "http://192.168.1.2:8080";
   final dio = Dio();
 
   // ignore: non_constant_identifier_names
