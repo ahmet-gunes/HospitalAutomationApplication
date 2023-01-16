@@ -1,18 +1,27 @@
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PatientMainPage extends StatefulWidget {
+class PatientMainPage extends ConsumerStatefulWidget {
   const PatientMainPage({Key? key, required this.pat}) : super(key: key);
   final PatientDataModel pat;
 
   @override
-  State<PatientMainPage> createState() => _PatientMainPageState(pat: pat);
+  ConsumerState<PatientMainPage> createState() =>
+      _PatientMainPageState(pat: pat);
 }
 
-class _PatientMainPageState extends State<PatientMainPage> {
+class _PatientMainPageState extends ConsumerState<PatientMainPage> {
   _PatientMainPageState({required this.pat});
   final PatientDataModel pat;
+  @override
+  void initState() {
+    super.initState();
+    ref.read(chatUpdateRiverpod).pat = pat;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
