@@ -44,7 +44,7 @@ class DocRegisterRiverpod extends ChangeNotifier {
       }).then((value) {
         if (value == true) {
           Grock.back();
-          Grock.toRemove(const HomePage());
+          Grock.to(const HomePage());
           Grock.snackBar(
               title: "Kayıt Başarılı",
               description: "Hesabınıza Giriş Yapabilirsiniz.");
