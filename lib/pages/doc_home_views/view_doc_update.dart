@@ -2,15 +2,19 @@ import 'package:doktorhasta/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
+import '../../Model/doctor_model.dart';
 
-class RegisterPage extends ConsumerStatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class DocUpdatePage extends ConsumerStatefulWidget {
+  const DocUpdatePage({Key? key, required this.doc}) : super(key: key);
+  final DoctorDataModel doc;
 
   @override
-  ConsumerState<RegisterPage> createState() => _RegisterPageState();
+  ConsumerState<DocUpdatePage> createState() => _RegisterPageState(doc: doc);
 }
 
-class _RegisterPageState extends ConsumerState<RegisterPage> {
+class _RegisterPageState extends ConsumerState<DocUpdatePage> {
+  _RegisterPageState({required this.doc});
+  final DoctorDataModel doc;
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
@@ -40,7 +44,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              controller: ref.read(docRegisterRiverpod).name,
+                              controller: ref.read(docUpdateRiverpod).name,
                               maxLines: 1,
                               decoration: InputDecoration(
                                   hintText: 'İsim',
@@ -60,7 +64,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                           Expanded(
                             child: TextFormField(
                               controller:
-                                  ref.read(docRegisterRiverpod).discipline,
+                                  ref.read(docUpdateRiverpod).discipline,
                               maxLines: 1,
                               decoration: InputDecoration(
                                   hintText: 'Ana Bilim Dalı',
@@ -84,27 +88,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              controller: ref.read(docRegisterRiverpod).gender,
-                              maxLines: 1,
-                              decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.chevron_right),
-                                  hintText: 'Cinsiyet',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 78, 87, 100),
-                                  ))),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              controller:
-                                  ref.read(docRegisterRiverpod).mastery1,
+                              controller: ref.read(docUpdateRiverpod).mastery1,
                               maxLines: 1,
                               decoration: InputDecoration(
                                   prefixIcon:
@@ -128,8 +112,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              controller:
-                                  ref.read(docRegisterRiverpod).graduate,
+                              controller: ref.read(docUpdateRiverpod).graduate,
                               maxLines: 1,
                               decoration: InputDecoration(
                                   hintText: 'Fakülte',
@@ -143,13 +126,16 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                                   ))),
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
                           Expanded(
                             child: TextFormField(
-                              controller:
-                                  ref.read(docRegisterRiverpod).workplace,
+                              controller: ref.read(docUpdateRiverpod).workplace,
                               maxLines: 1,
                               decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.chevron_right),
@@ -169,24 +155,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        controller: ref.read(docRegisterRiverpod).email,
-                        maxLines: 1,
-                        decoration: InputDecoration(
-                            hintText: 'E-Posta',
-                            prefixIcon: const Icon(Icons.email),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Color.fromARGB(255, 78, 87, 100),
-                            ))),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        controller: ref.read(docRegisterRiverpod).pass,
+                        controller: ref.read(docUpdateRiverpod).pass,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Şifre Giriniz';
@@ -210,14 +179,14 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         height: 20,
                       ),
                       ElevatedButton(
-                        onPressed: () => ref.read(docRegisterRiverpod).fetch(),
+                        onPressed: () => ref.read(docUpdateRiverpod).fetch(),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                           backgroundColor:
                               const Color.fromARGB(255, 78, 87, 100),
                         ),
                         child: const Text(
-                          'Kayıt Ol',
+                          'Bilgileri Güncelle',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -225,22 +194,6 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       ),
                       const SizedBox(
                         height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Hesabınız var mı?'),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomePage(),
-                                  ),
-                                );
-                              },
-                              child: const Text('Giriş Yap')),
-                        ],
                       ),
                     ],
                   ),

@@ -81,8 +81,8 @@ app.patch("/patient", async(req,res)=>{
 })
 
 app.patch("/doctor", async(req,res)=>{
-    const {doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1,doctorID} = req.body;
-    const doctor = await updateDoctor(doctorName , doctorPassword , doctorMail , doctorPhoto, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1,doctorID);
+    const {doctorName , doctorPassword , doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1,doctorID} = req.body;
+    const doctor = await updateDoctor(doctorName, doctorPassword, doctorWorkplace, doctorGraduate, doctorDiscipline, doctorMastery1, doctorID);
         res.send(doctor)
 })
 

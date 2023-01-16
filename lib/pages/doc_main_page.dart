@@ -20,6 +20,13 @@ class DoctorMainPage extends ConsumerStatefulWidget {
 class _DoctorMainPageState extends ConsumerState<DoctorMainPage> {
   _DoctorMainPageState({required this.doc});
   int _selectedIndex = 0;
+  @override
+  initState() {
+    super.initState();
+    ref.read(onlineFlagRiverpod).doctor = doc;
+    ref.read(docUpdateRiverpod).doctor = doc;
+  }
+
   final DoctorDataModel doc;
   void _onItemTapped(int index) {
     setState(() {
