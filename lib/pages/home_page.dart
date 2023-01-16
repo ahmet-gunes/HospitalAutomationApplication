@@ -2,16 +2,19 @@
 
 import 'package:doktorhasta/pages/patient_login.dart';
 import 'package:doktorhasta/pages/doctor_login.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+class _HomePageState extends ConsumerState<HomePage>
+    with WidgetsBindingObserver {
   @override
   initState() {
     super.initState();
@@ -29,7 +32,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
 
-    if (state == AppLifecycleState.detached) {}
+    if (state == AppLifecycleState.resumed) {
+      ref.read(onlineFlagRiverpod).fetch(status: 1);
+    } else if (state == AppLifecycleState.paused) {
+      ref.read(onlineFlagRiverpod).fetch(status: 0);
+    }
   }
 
   @override

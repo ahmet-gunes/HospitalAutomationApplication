@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:doktorhasta/Model/doctor_model.dart';
+import 'package:doktorhasta/pages/doc_home_views/view_doc_update.dart';
 import 'package:doktorhasta/pages/home_page.dart';
+import 'package:doktorhasta/pages/photo_picker/screens/set_photo_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
+import 'package:grock/grock.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DocProfile extends ConsumerStatefulWidget {
   const DocProfile({Key? key, required this.doc}) : super(key: key);
@@ -26,27 +32,37 @@ class _DocProfileState extends ConsumerState<DocProfile> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 Center(
-                    child: CircleAvatar(
-                        backgroundColor: Colors.white60,
-                        radius: 70,
-                        child: Image.asset(
-                          'assets/images/default_avatar.png',
-                        ))),
-                const SizedBox(
-                  height: 15,
+                  child: ClipOval(
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(80),
+                      child: (doc.doctorPhoto != null)
+                          ? Image.memory(
+                              base64Decode(doc.doctorPhoto),
+                              fit: BoxFit.fill,
+                            )
+                          : (doc.doctorGender == "erkek")
+                              ? Image.asset("assets/images/male.png")
+                              : Image.asset("assets/images/female.png"),
+                    ),
+                  ),
                 ),
-                Text(
-                  doc.doctorName
-                      .replaceRange(0, 1, doc.doctorName[0].toUpperCase()),
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 78, 87, 100),
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600),
+                TextButton(
+                  onPressed: () async {
+                    Grock.to(SetPhotoScreen());
+                  },
+                  child: const Text(
+                    'Fotoğrafı Düzenle',
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
+                TextButton(
+                  onPressed: () async {
+                    Grock.to(DocUpdatePage(doc: doc));
+                  },
+                  child: const Text(
+                    'Profili Düzenle',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
@@ -201,20 +217,8 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                     ]),
                   ]),
                 ),
-                TextButton(
-                  onPressed: () async {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const HomePage(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Profili Düzenle',
-                  ),
-                ),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 TextButton(
                   onPressed: () async {
