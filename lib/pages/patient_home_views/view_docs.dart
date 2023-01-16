@@ -41,8 +41,6 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
   _ViewDocsState({required this.pat});
   final PatientDataModel pat;
 
-  Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = const Text('My Personal Journal');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +55,7 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: customSearchDelegate(),
+                  delegate: customSearchDelegate(pat: pat),
                 );
               },
               icon: const Icon(Icons.search))
@@ -74,10 +72,12 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                   var doctor = doctorList[index];
                   return InkWell(
                     onTap: () {
-                      Grock.to(ViewDocDetail(
-                        doc: doctor,
-                        pat: pat,
-                      ));
+                      Grock.to(
+                        ViewDocDetail(
+                          doc: doctor,
+                          pat: pat,
+                        ),
+                      );
                     },
                     child: Card(
                       child: Row(
@@ -123,6 +123,8 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
 }
 
 class customSearchDelegate extends SearchDelegate {
+  customSearchDelegate({Key? key, required this.pat}) : super();
+  final PatientDataModel pat;
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -147,10 +149,11 @@ class customSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
+    List<DoctorDataModel> matchQuery = [];
     for (var a in docList) {
-      if (a.doctorName.contains(query) || a.doctorDiscipline.contains(query)) {
-        matchQuery.add(a.doctorName);
+      if (a.doctorName.toLowerCase().contains(query.toLowerCase()) ||
+          a.doctorDiscipline.contains(query)) {
+        matchQuery.add(a);
       }
     }
     return ListView.builder(
@@ -158,7 +161,15 @@ class customSearchDelegate extends SearchDelegate {
       itemBuilder: (context, index) {
         var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          onTap: () {
+            Grock.to(
+              ViewDocDetail(
+                doc: result,
+                pat: pat,
+              ),
+            );
+          },
+          title: Text(result.doctorName),
         );
       },
     );
@@ -166,11 +177,10 @@ class customSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
+    List<DoctorDataModel> matchQuery = [];
     for (var a in docList) {
-      if (a.doctorName.toLowerCase().contains(query) ||
-          a.doctorDiscipline.toLowerCase().contains(query)) {
-        matchQuery.add(a.doctorName);
+      if (a.doctorName.contains(query) || a.doctorDiscipline.contains(query)) {
+        matchQuery.add(a);
       }
     }
     return ListView.builder(
@@ -178,7 +188,15 @@ class customSearchDelegate extends SearchDelegate {
       itemBuilder: (context, index) {
         var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          onTap: () {
+            Grock.to(
+              ViewDocDetail(
+                doc: result,
+                pat: pat,
+              ),
+            );
+          },
+          title: Text(result.doctorName),
         );
       },
     );
