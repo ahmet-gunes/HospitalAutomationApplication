@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:grock/grock.dart';
+import 'package:doktorhasta/config/baseurl.dart';
 
 class ViewDocs extends ConsumerStatefulWidget {
   ViewDocs({Key? key, required this.pat}) : super(key: key);
@@ -19,7 +20,7 @@ class ViewDocs extends ConsumerStatefulWidget {
 
 List<DoctorDataModel> docList = [];
 Future<List<DoctorDataModel>> _getDoctorList() async {
-  const String baseurl = "http://192.168.1.101:8080";
+  String baseurl = BaseurlConstants().baseurl;
   try {
     var response = await Dio().get("$baseurl/doctors");
     List<DoctorDataModel>? doctorList = [];

@@ -20,7 +20,7 @@ class PatLoginRiverpod extends ChangeNotifier {
         if (value != null) {
           PatientDataModel pat = value;
           Grock.back();
-          Grock.toRemove(Patient_Home(
+          Grock.to(Patient_Home(
             pat: pat,
           ));
         } else {

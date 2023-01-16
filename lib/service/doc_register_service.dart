@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:doktorhasta/config/baseurl.dart';
 
 // ignore: camel_case_types
 class doc_register_service {
-  final String baseurl = "http://192.168.1.101:8080";
+  final String baseurl = BaseurlConstants().baseurl;
   final dio = Dio();
 
   // ignore: non_constant_identifier_names
