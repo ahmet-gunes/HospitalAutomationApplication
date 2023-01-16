@@ -90,7 +90,8 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                                         base64Decode(doctor.doctorPhoto),
                                         fit: BoxFit.fill,
                                       )
-                                    : (doctor.doctorGender == "erkek")
+                                    : (doctor.doctorGender.toLowerCase() ==
+                                            "erkek")
                                         ? Image.asset("assets/images/male.png")
                                         : Image.asset(
                                             "assets/images/female.png")),
@@ -152,7 +153,7 @@ class customSearchDelegate extends SearchDelegate {
     List<DoctorDataModel> matchQuery = [];
     for (var a in docList) {
       if (a.doctorName.toLowerCase().contains(query.toLowerCase()) ||
-          a.doctorDiscipline.contains(query)) {
+          a.doctorDiscipline.toLowerCase().contains(query)) {
         matchQuery.add(a);
       }
     }
@@ -169,7 +170,9 @@ class customSearchDelegate extends SearchDelegate {
               ),
             );
           },
+          leading: Icon(Icons.person),
           title: Text(result.doctorName),
+          subtitle: Text(result.doctorDiscipline),
         );
       },
     );
@@ -179,7 +182,8 @@ class customSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<DoctorDataModel> matchQuery = [];
     for (var a in docList) {
-      if (a.doctorName.contains(query) || a.doctorDiscipline.contains(query)) {
+      if (a.doctorName.toLowerCase().contains(query) ||
+          a.doctorDiscipline.toLowerCase().contains(query)) {
         matchQuery.add(a);
       }
     }
@@ -196,7 +200,9 @@ class customSearchDelegate extends SearchDelegate {
               ),
             );
           },
+          leading: Icon(Icons.person),
           title: Text(result.doctorName),
+          subtitle: Text(result.doctorDiscipline),
         );
       },
     );
