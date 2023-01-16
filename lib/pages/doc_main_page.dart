@@ -25,6 +25,7 @@ class _DoctorMainPageState extends ConsumerState<DoctorMainPage> {
     super.initState();
     ref.read(onlineFlagRiverpod).doctor = doc;
     ref.read(docUpdateRiverpod).doctor = doc;
+    ref.read(chatUpdateRiverpod).doctor = doc;
   }
 
   final DoctorDataModel doc;

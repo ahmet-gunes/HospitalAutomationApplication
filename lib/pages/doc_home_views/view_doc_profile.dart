@@ -50,7 +50,7 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                 ),
                 TextButton(
                   onPressed: () async {
-                    Grock.to(SetPhotoScreen());
+                    Grock.to(const SetPhotoScreen());
                   },
                   child: const Text(
                     'Fotoğrafı Düzenle',
@@ -65,10 +65,10 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color.fromARGB(52, 255, 255, 255),
+                    color: const Color.fromARGB(52, 255, 255, 255),
                   ),
                   child: Column(children: [
                     Row(children: [
@@ -76,45 +76,45 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding:
-                              EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, bottom: 10),
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "İsim : ${doc.doctorName.replaceRange(0, 1, doc.doctorName[0].toUpperCase())}",
                               textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding:
-                              EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, bottom: 10),
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "Cinsiyet : ${doc.doctorGender.replaceRange(0, 1, doc.doctorGender[0].toUpperCase())}",
                               textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )),
                           ),
                         ),
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(children: [
@@ -122,45 +122,45 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding:
-                              EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, bottom: 10),
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "Mezuniyet : ${doc.doctorGraduate.replaceRange(0, 1, doc.doctorGraduate[0].toUpperCase())}",
                               textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding:
-                              EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, bottom: 10),
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "Çalıştığı Yer : ${doc.doctorWorkplace.replaceRange(0, 1, doc.doctorWorkplace[0].toUpperCase())}",
                               textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )),
                           ),
                         ),
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(children: [
@@ -168,30 +168,30 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding:
-                              EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, bottom: 10),
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "Bölüm : ${doc.doctorDiscipline.replaceRange(0, 1, doc.doctorDiscipline[0].toUpperCase())}",
                               textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             )),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
+                      const Expanded(
                           child: SizedBox(
                         width: 15,
                       ))
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(children: [
@@ -199,12 +199,12 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromARGB(198, 158, 175, 186),
+                            color: const Color.fromARGB(198, 158, 175, 186),
                           ),
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 10, left: 15, bottom: 10, right: 4),
                           alignment: Alignment.centerLeft,
-                          child: SingleChildScrollView(
+                          child: const SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: (Text(
                               "Uzmanlık : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
