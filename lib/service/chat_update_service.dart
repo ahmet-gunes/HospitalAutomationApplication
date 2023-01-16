@@ -8,7 +8,7 @@ class Chat_Update_service {
 
   Future<List<MessageModel>> message_update_call(
       {required int sender, required int reciever}) async {
-    var response = await dio.get("$baseurl:8080/messages", queryParameters: {
+    var response = await dio.get("$baseurl/messages", queryParameters: {
       "messageSender": sender,
       "messageReciever": reciever
     });

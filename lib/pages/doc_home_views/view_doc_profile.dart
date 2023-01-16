@@ -42,7 +42,7 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                               base64Decode(doc.doctorPhoto),
                               fit: BoxFit.fill,
                             )
-                          : (doc.doctorGender == "erkek")
+                          : (doc.doctorGender.toLowerCase() == "erkek")
                               ? Image.asset("assets/images/male.png")
                               : Image.asset("assets/images/female.png"),
                     ),
