@@ -19,7 +19,7 @@ class DocLoginRiverpod extends ChangeNotifier {
           .then((value) {
         if (value != null) {
           Grock.back();
-          Grock.toRemove(DoctorMainPage(
+          Grock.to(DoctorMainPage(
             doc: value,
           ));
         } else {
