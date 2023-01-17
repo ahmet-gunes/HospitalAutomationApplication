@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:doktorhasta/pages/home_page.dart';
+import 'package:doktorhasta/pages/patient_home_views/view_pat_update.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
+import 'package:grock/grock.dart';
 
 class PatProfile extends ConsumerStatefulWidget {
   const PatProfile({Key? key, required this.pat}) : super(key: key);
@@ -175,12 +177,8 @@ class _PatProfileState extends ConsumerState<PatProfile> {
               height: 10,
             ),
             TextButton(
-              onPressed: () async {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const HomePage(),
-                  ),
-                );
+              onPressed: () {
+                Grock.to(PatUpdatePage(pat: pat));
               },
               child: const Text(
                 'Profili Düzenle',
