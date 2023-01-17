@@ -25,6 +25,12 @@ class _Patient_HomeState extends ConsumerState<Patient_Home> {
 
   int _selectedIndex = 0;
   @override
+  void initState() {
+    super.initState();
+    ref.read(patUpdateRiverpod).patient = pat;
+  }
+
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
