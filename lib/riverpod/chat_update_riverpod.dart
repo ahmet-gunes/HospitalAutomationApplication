@@ -5,6 +5,7 @@ import 'package:doktorhasta/Model/message_model.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:doktorhasta/config/loading_popup.dart';
 import 'package:doktorhasta/pages/patient_home_views/chat.dart';
+import 'package:doktorhasta/pages/patient_home_views/chats.dart';
 import 'package:doktorhasta/service/chat_update_service.dart';
 import 'package:flutter/material.dart';
 import 'package:grock/grock.dart';
@@ -15,11 +16,14 @@ class ChatUpdateRiverpod extends ChangeNotifier {
   final service = Chat_Update_service();
 
   void fetch({required DoctorDataModel doctor}) async {
-    loadingPopup();
     service
         .message_update_call(sender: pat.patientID, reciever: doctor.doctorID)
         .then((value) {
-      Grock.to(Chat(messageList: value));
+      Grock.to(Chat(
+        messageList: value,
+        pat: pat,
+        doc: doctor,
+      ));
     });
     /* if (value.isNotEmpty) {
         Grock.back();

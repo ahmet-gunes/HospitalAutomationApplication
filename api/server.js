@@ -1,5 +1,5 @@
 import express from 'express'
-import { getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor, getDoctorByID, getPatientByID, doctorOnlineStatus} from './database.js'
+import { getMessagesISend,getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor, getDoctorByID, getPatientByID, doctorOnlineStatus} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -90,4 +90,10 @@ app.patch("/doctor/online", async(req,res)=>{
     const {status, doctorMail, doctorPassword} = req.body;
     const doctor = await doctorOnlineStatus(status, doctorMail, doctorPassword);
         res.send(doctor)
+})
+
+app.post("/messages/chats", async (req, res)=>{
+    const {messageSender} = req.body
+    const messages = await getMessagesISend(messageSender)
+    res.send(messages)
 })

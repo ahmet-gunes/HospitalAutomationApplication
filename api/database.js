@@ -75,3 +75,8 @@ export async function doctorOnlineStatus(status, mail, pass) {
     const [rows] = await pool.query("UPDATE doctor SET doctorOnline = ? WHERE (doctorMail = ? AND doctorPassword = ?)", [status, mail, pass])
     return getDoctor(mail, pass)
 }
+
+export async function getMessagesISend(sender){
+    const [rows] = await pool.query("SELECT * FROM message Where(messageSender =? ) ORDER BY messageDate ASC",[sender])
+    return rows
+}
