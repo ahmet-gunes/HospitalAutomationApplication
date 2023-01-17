@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/Model/message_model.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
@@ -17,14 +19,15 @@ class ChatUpdateRiverpod extends ChangeNotifier {
     service
         .message_update_call(sender: pat.patientID, reciever: doctor.doctorID)
         .then((value) {
-      if (value.isNotEmpty) {
+      Grock.to(Chat(messageList: value));
+    });
+    /* if (value.isNotEmpty) {
         Grock.back();
         Grock.to(Chat(messageList: value));
         Grock.snackBar(title: "Sohbete aktarıldı", description: "");
       } else {
         Grock.back();
         Grock.snackBar(title: "Hata", description: "Tekrar Deneyin.");
-      }
-    });
+      } */
   }
 }

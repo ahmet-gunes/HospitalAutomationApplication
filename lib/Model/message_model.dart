@@ -3,13 +3,13 @@ class MessageModel {
   final int recieverID;
   final String senderName;
   final String message;
-  final String media;
-  final DateTime date;
+  final String? media;
+  final String date;
   MessageModel(this.senderID, this.recieverID, this.senderName, this.message,
       this.media, this.date);
   MessageModel.fromJson(Map<String, dynamic> json)
       : senderID = json["messageSender"],
-        recieverID = json["messasgeReciever"],
+        recieverID = json["messageReciever"],
         senderName = json["SenderName"],
         message = json["messageText"],
         media = json["messageMedia"],

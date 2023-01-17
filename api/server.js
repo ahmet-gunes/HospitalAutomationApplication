@@ -36,7 +36,7 @@ app.get("/patient/id",async (req, res)=>{
     res.send(patient)
 })
 
-app.get("/messages", async (req, res)=>{
+app.post("/messages", async (req, res)=>{
     const {messageSender, messageReciever} = req.body
     const messages = await getMessages(messageSender, messageReciever)
     res.send(messages)
