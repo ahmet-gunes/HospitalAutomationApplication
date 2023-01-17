@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:doktorhasta/pages/patient_home_views/view_pat_update.dart';
+
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
@@ -19,7 +22,14 @@ class PatProfile extends ConsumerStatefulWidget {
 
 class _PatProfileState extends ConsumerState<PatProfile> {
   _PatProfileState({required this.pat});
+  @override
+  void initState() {
+    super.initState();
+    ref.read(chatUpdateRiverpod).pat = pat;
+  }
+
   final PatientDataModel pat;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
