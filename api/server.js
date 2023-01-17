@@ -75,8 +75,8 @@ app.post("/message", async(req, res) =>{
 })
 
 app.patch("/patient", async(req,res)=>{
-    const {PatientName , PatientPassword , PatientMail , PatientPhoto, PatientID} = req.body;
-    const patient = await updatePatient(PatientName , PatientPassword , PatientMail , PatientPhoto, PatientID);
+    const {PatientName , PatientPassword ,PatientID} = req.body;
+    const patient = await updatePatient(PatientName , PatientPassword , PatientID);
         res.send(patient)
 })
 

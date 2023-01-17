@@ -62,9 +62,9 @@ export async function setMessage(sender, sname , reciever, content, media) {
     return rows
 }
 
-export async function updatePatient(name, pass, mail, photo, ID) {
-    const [rows] = await pool.query("UPDATE patient SET PatientName = ?, PatientPassword = ?, PatientMail = ?, PatientPhoto = ? WHERE PatientID = ?", [name, pass, mail, photo, ID])
-    return getPatient(mail, pass)
+export async function updatePatient(name, pass, ID) {
+    const [rows] = await pool.query("UPDATE patient SET PatientName = ?, PatientPassword = ? WHERE PatientID = ?", [name, pass,ID])
+    return rows
 }
 
 export async function updateDoctor(name, pass, workplace ,graduate, disc, mastery1, ID) {
