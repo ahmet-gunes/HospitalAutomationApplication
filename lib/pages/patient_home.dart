@@ -3,25 +3,32 @@
 import 'package:doktorhasta/pages/patient_home_views/chats.dart';
 import 'package:doktorhasta/pages/patient_home_views/view_docs.dart';
 import 'package:doktorhasta/pages/patient_home_views/view_pat_profile.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Patient_Home extends StatefulWidget {
+class Patient_Home extends ConsumerStatefulWidget {
   const Patient_Home({Key? key, required this.pat}) : super(key: key);
   final PatientDataModel pat;
 
   @override
   // ignore: no_logic_in_create_state
-  State<Patient_Home> createState() => _Patient_HomeState(pat: pat);
+  ConsumerState<Patient_Home> createState() => _Patient_HomeState(pat: pat);
 }
 
-class _Patient_HomeState extends State<Patient_Home> {
+class _Patient_HomeState extends ConsumerState<Patient_Home> {
   _Patient_HomeState({required this.pat});
 
   late PatientDataModel pat;
 
   int _selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    ref.read(patUpdateRiverpod).patient = pat;
+  }
 
   void _onItemTapped(int index) {
     setState(() {

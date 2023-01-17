@@ -2,5 +2,5 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BaseurlConstants {
-  final String baseurl = "http://192.168.1.2:8080";
+  final String baseurl = "http://192.168.1.102:8080";
 }
