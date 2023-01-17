@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import '../Model/message_model.dart';
 import '../config/baseurl.dart';
@@ -13,7 +15,7 @@ class Chat_Update_service {
       "messageReciever": reciever
     });
     if (response.statusCode == 200) {
-      return response.data;
+      return jsonDecode(response.data);
     } else {
       throw ("Bir Sorun Oluştu ${response.statusCode}");
     }

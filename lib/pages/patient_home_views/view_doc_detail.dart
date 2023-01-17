@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/pages/home_page.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
@@ -218,7 +219,7 @@ class _ViewDocDetailState extends ConsumerState<ViewDocDetail> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => ref.read(chatUpdateRiverpod).fetch(doctor: doc),
         backgroundColor: Colors.blueGrey,
         child: const Icon(Icons.message),
       ),
