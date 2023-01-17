@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:doktorhasta/pages/patient_home_views/view_pat_update.dart';
+
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
