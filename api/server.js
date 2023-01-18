@@ -1,5 +1,5 @@
 import express from 'express'
-import { getMessagesISend,getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor, getDoctorByID, getPatientByID, doctorOnlineStatus} from './database.js'
+import { getMessagesISend,getDoctor,getDoctors, getPatient, getPatients, getMessages , setDoctor, setPatient, setMessage, updatePatient, updateDoctor, getDoctorByID, getPatientByID, doctorOnlineStatus, getMessagesIReciever} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -18,7 +18,7 @@ app.get("/doctors",async (req, res)=>{
     res.send(doctors)
 })
 
-app.get("/doctor/id",async (req, res)=>{
+app.post("/doctor/id",async (req, res)=>{
     const{doctorID} = req.body
     const doctor = await getDoctorByID(doctorID)
     res.send(doctor)
@@ -30,7 +30,7 @@ app.get("/patients",async (req, res)=>{
     res.send(patients)
 })
 
-app.get("/patient/id",async (req, res)=>{
+app.post("/patient/id",async (req, res)=>{
     const{patientID} = req.body
     const patient = await getPatientByID(patientID)
     res.send(patient)
@@ -95,5 +95,11 @@ app.patch("/doctor/online", async(req,res)=>{
 app.post("/messages/chats", async (req, res)=>{
     const {messageSender} = req.body
     const messages = await getMessagesISend(messageSender)
+    res.send(messages)
+})
+
+app.post("/messages/chat", async (req, res)=>{
+    const {messageReciever} = req.body
+    const messages = await getMessagesIReciever(messageReciever)
     res.send(messages)
 })

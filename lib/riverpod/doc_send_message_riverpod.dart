@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:grock/grock.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
 
-class SendMessage extends ChangeNotifier {
+class DocSendMessage extends ChangeNotifier {
   final service = SendMessageService();
   final service2 = Chat_Update_service();
 
@@ -16,19 +16,19 @@ class SendMessage extends ChangeNotifier {
 
   void fetch({required PatientDataModel pat, required DoctorDataModel doc}) {
     final MessageModel message = MessageModel(
-      pat.patientID,
       doc.doctorID,
-      pat.patientName,
+      pat.patientID,
+      doc.doctorName,
       mesaj.text,
       null,
     );
     service.message_send_call(message: message).then((value) {
       if (value == true) {
-        log("mesaj gönderildi");
+        log("mesaj gÃ¶nderildi");
         Grock.hideKeyboard();
       } else {
         Grock.back();
-        Grock.snackBar(title: "Hata", description: "Mesaj Gönderilemedi");
+        Grock.snackBar(title: "Hata", description: "Mesaj GÃ¶nderilemedi");
       }
     });
   }

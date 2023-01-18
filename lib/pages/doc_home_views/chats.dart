@@ -4,51 +4,52 @@ import 'dart:developer';
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/Model/message_model.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
-import 'package:doktorhasta/pages/patient_home_views/chat.dart';
+import 'package:doktorhasta/pages/doc_home_views/chat.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:doktorhasta/service/chat_update_service.dart';
+import 'package:doktorhasta/service/doc_chat_update_service.dart';
 import 'package:doktorhasta/service/get_doc_service.dart';
+import 'package:doktorhasta/service/get_pat_service.dart';
 import 'package:doktorhasta/service/message_chat_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:grock/grock.dart';
 
 class Chats extends ConsumerStatefulWidget {
-  Chats({Key? key, required this.pat}) : super(key: key);
-  PatientDataModel pat;
+  Chats({Key? key, required this.doc}) : super(key: key);
+  DoctorDataModel doc;
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ChatsState(pat: pat);
+  ConsumerState<ConsumerStatefulWidget> createState() => _ChatsState(doc: doc);
 }
 
 class _ChatsState extends ConsumerState<Chats> {
-  final service = Message_Chat_List();
-  final service2 = get_doc_service();
+  final service = Doc_Message_Chat_List();
+  final service2 = get_pat_service();
   final service3 = Chat_Update_service();
-  _ChatsState({required this.pat});
-  PatientDataModel pat;
+  _ChatsState({required this.doc});
+  DoctorDataModel doc;
   @override
   void initState() {
     super.initState();
-    service.message_update_call(sender: pat.patientID).then((value) {
+    service.message_update_call(reciever: doc.doctorID).then((value) {
       senderID = [];
       for (int i = 0; i < value.length; i++) {
-        if (senderID.contains(value[i].recieverID) == false) {
-          senderID.add(int.parse(value[i].recieverID.toString()));
+        if (senderID.contains(value[i].senderID) == false) {
+          senderID.add(int.parse(value[i].senderID.toString()));
           messages.add(value[i]);
         } else {
           continue;
         }
       }
       for (int i = 0; i < senderID.length; i++) {
-        service2.get_doc_call(id: messages[i].recieverID).then((value) {
-          doclist.add(value);
+        service2.get_pat_call(id: messages[i].senderID).then((value) {
+          patlist.add(value);
         });
       }
     });
   }
 
-  List<MessageModel> allmessages = [];
-  List<DoctorDataModel> doclist = [];
+  List<PatientDataModel> patlist = [];
   List<int> senderID = [];
   List<MessageModel> messages = [];
 
@@ -62,10 +63,10 @@ class _ChatsState extends ConsumerState<Chats> {
             onTap: () {
               service3
                   .message_update_call(
-                      sender: pat.patientID, reciever: doclist[index].doctorID)
+                      sender: doc.doctorID, reciever: patlist[index].patientID)
                   .then((value) {
                 Grock.to(
-                    Chat(pat: pat, doc: doclist[index], messageList: value));
+                    Chat(pat: patlist[index], doc: doc, messageList: value));
               });
             },
             child: Card(
@@ -73,12 +74,12 @@ class _ChatsState extends ConsumerState<Chats> {
                 ClipOval(
                   child: SizedBox.fromSize(
                       size: const Size.fromRadius(35),
-                      child: (doclist[index].doctorPhoto != null)
+                      child: (patlist[index].patientPhoto != null)
                           ? Image.memory(
-                              base64Decode(doclist[index].doctorPhoto),
+                              base64Decode(patlist[index].patientPhoto!),
                               fit: BoxFit.fill,
                             )
-                          : (doclist[index].doctorGender.toLowerCase() ==
+                          : (patlist[index].patientGender.toLowerCase() ==
                                   "erkek")
                               ? Image.asset("assets/images/male.png")
                               : Image.asset("assets/images/female.png")),
@@ -88,7 +89,7 @@ class _ChatsState extends ConsumerState<Chats> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(doclist[index].doctorName),
+                      Text(patlist[index].patientName),
                       Text("(...)"),
                     ],
                   ),

@@ -1,7 +1,7 @@
 import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/Model/message_model.dart';
 import 'package:doktorhasta/config/color_constants.dart';
-import 'package:doktorhasta/pages/patient_home_views/chats.dart';
+import 'package:doktorhasta/pages/doc_home_views/chats.dart';
 import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,8 +39,7 @@ class _DoctorMainPageState extends ConsumerState<DoctorMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: DocProfile(doc: doc),
-      ),
+          child: _selectedIndex == 0 ? DocProfile(doc: doc) : Chats(doc: doc)),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 16,
         unselectedFontSize: 14,
