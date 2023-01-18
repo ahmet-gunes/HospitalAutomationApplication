@@ -29,7 +29,7 @@ export async function getDoctor(mail, pass){
 
 export async function getDoctorByID(id){
     const [rows] = await pool.query("SELECT * FROM doctor WHERE doctorID = ?", [id])
-    return rows
+    return rows[0]
 }
 
 export async function getPatient(mail, pass){
@@ -39,7 +39,7 @@ export async function getPatient(mail, pass){
 
 export async function getPatientByID(id){
     const [rows] = await pool.query("SELECT * FROM patient WHERE PatientID = ?", [id])
-    return rows
+    return rows[0]
 }
 
 export async function getMessages(sender,reciever){
@@ -74,4 +74,14 @@ export async function updateDoctor(name, pass, workplace ,graduate, disc, master
 export async function doctorOnlineStatus(status, mail, pass) {
     const [rows] = await pool.query("UPDATE doctor SET doctorOnline = ? WHERE (doctorMail = ? AND doctorPassword = ?)", [status, mail, pass])
     return getDoctor(mail, pass)
+}
+
+export async function getMessagesISend(sender){
+    const [rows] = await pool.query("SELECT * FROM message Where( messageSender =? ) ORDER BY messageDate ASC",[sender])
+    return rows
+}
+
+export async function getMessagesIReciever(reciever){
+    const [rows] = await pool.query("SELECT * FROM message Where( messageReciever =? ) ORDER BY messageDate ASC",[reciever])
+    return rows
 }

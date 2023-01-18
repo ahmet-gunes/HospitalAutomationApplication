@@ -106,6 +106,15 @@ class _ViewDocsState extends ConsumerState<ViewDocs> {
                               ],
                             ),
                           ),
+                          Container(
+                            width: 100,
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                                textAlign: TextAlign.right,
+                                (doctor.doctorOnline == 1)
+                                    ? "ONLINE"
+                                    : "OFFLINE"),
+                          ),
                         ],
                       ),
                     ),

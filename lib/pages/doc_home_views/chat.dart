@@ -57,8 +57,8 @@ class _ChatState extends ConsumerState<Chat> {
               itemCount: messageList.length,
               itemBuilder: (context, index) {
                 return Container(
-                  padding: messageList[index].senderID == pat.patientID &&
-                          messageList[index].senderName == pat.patientName
+                  padding: messageList[index].senderID == doc.doctorID &&
+                          messageList[index].senderName == doc.doctorName
                       ? EdgeInsets.only(right: 10, left: 150, top: 10)
                       : EdgeInsets.only(left: 10, right: 150, top: 10),
                   child: ListTile(
@@ -71,14 +71,14 @@ class _ChatState extends ConsumerState<Chat> {
                         borderRadius: BorderRadius.circular(20)),
                     title: Text(messageList[index].senderName.toUpperCase(),
                         textAlign: messageList[index].senderID ==
-                                    pat.patientID &&
-                                messageList[index].senderName == pat.patientName
+                                    doc.doctorID &&
+                                messageList[index].senderName == doc.doctorName
                             ? TextAlign.right
                             : TextAlign.left),
                     subtitle: Text(messageList[index].message.toUpperCase(),
                         textAlign: messageList[index].senderID ==
-                                    pat.patientID &&
-                                messageList[index].senderName == pat.patientName
+                                    doc.doctorID &&
+                                messageList[index].senderName == doc.doctorName
                             ? TextAlign.right
                             : TextAlign.left),
                   ),
@@ -91,22 +91,24 @@ class _ChatState extends ConsumerState<Chat> {
             alignment: Alignment.bottomCenter,
             height: 60,
             decoration: BoxDecoration(
-                color: Colors.white70, border: Border.all(width: 1)),
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: TextField(
-                controller: ref.read(patsendMessageRiverpod).mesaj,
+                controller: ref.read(docsendMessageRiverpod).mesaj,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                       icon: Icon(Icons.send),
                       onPressed: () {
                         ref
-                            .read(patsendMessageRiverpod)
+                            .read(docsendMessageRiverpod)
                             .fetch(pat: pat, doc: doc);
                         service
                             .message_update_call(
-                                sender: pat.patientID, reciever: doc.doctorID)
+                                sender: doc.doctorID, reciever: pat.patientID)
                             .then((value) {
                           _onItemTapped(value);
-                          ref.read(patsendMessageRiverpod).mesaj.clear();
+                          ref.read(docsendMessageRiverpod).mesaj.clear();
                         });
                       }),
                 )),

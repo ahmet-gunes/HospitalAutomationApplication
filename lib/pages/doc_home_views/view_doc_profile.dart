@@ -4,6 +4,7 @@ import 'package:doktorhasta/Model/doctor_model.dart';
 import 'package:doktorhasta/pages/doc_home_views/view_doc_update.dart';
 import 'package:doktorhasta/pages/home_page.dart';
 import 'package:doktorhasta/pages/photo_picker/screens/set_photo_screen.dart';
+import 'package:doktorhasta/riverpod/riverpod_management.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:doktorhasta/Model/patient_model.dart';
@@ -204,14 +205,13 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                           padding: const EdgeInsets.only(
                               top: 10, left: 15, bottom: 10, right: 4),
                           alignment: Alignment.centerLeft,
-                          child: const SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: (Text(
-                              "Uzmanlık : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 18),
-                            )),
-                          ),
+                          child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Text(
+                                "Uzmanlık : ${doc.doctorMastery1.replaceRange(0, 1, doc.doctorDiscipline[0].toUpperCase())}",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 18),
+                              )),
                         ),
                       ),
                     ]),
@@ -222,6 +222,7 @@ class _DocProfileState extends ConsumerState<DocProfile> {
                 ),
                 TextButton(
                   onPressed: () async {
+                    ref.read(onlineFlagRiverpod).fetch(status: 0);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) => const HomePage(),

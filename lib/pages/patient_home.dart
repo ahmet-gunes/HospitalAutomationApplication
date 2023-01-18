@@ -30,7 +30,6 @@ class _Patient_HomeState extends ConsumerState<Patient_Home> {
     ref.read(patUpdateRiverpod).patient = pat;
   }
 
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -45,7 +44,7 @@ class _Patient_HomeState extends ConsumerState<Patient_Home> {
             ? PatProfile(pat: pat)
             : _selectedIndex == 1
                 ? ViewDocs(pat: pat)
-                : Chats(),
+                : Chats(pat: pat),
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 16,
